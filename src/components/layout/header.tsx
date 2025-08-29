@@ -17,8 +17,8 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center">
-        <Link href="/" className="mr-8 flex items-center space-x-2">
+      <div className="container flex h-16 items-center justify-between">
+        <Link href="/" className="flex items-center space-x-2">
           <Logo />
         </Link>
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
@@ -35,7 +35,7 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <div className="flex flex-1 items-center justify-end space-x-4">
+        <div className="flex items-center space-x-4">
           <Button asChild className="glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">
             <Link href="/contribute">Join as Contributor</Link>
           </Button>
