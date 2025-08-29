@@ -3,10 +3,10 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 const tiers = [
-    { name: "Tier D", active: true },
-    { name: "Tier C", active: true },
-    { name: "Tier B", active: false },
     { name: "Tier A", active: false },
+    { name: "Tier B", active: false },
+    { name: "Tier C", active: true },
+    { name: "Tier D", active: true },
 ]
 
 export function TierProgression() {
@@ -24,7 +24,7 @@ export function TierProgression() {
                 {index < tiers.length - 1 && (
                     <ChevronRight className={cn(
                         "h-8 w-8 mx-2",
-                        tier.active ? "text-accent" : "text-muted-foreground"
+                        tiers[index+1].active ? "text-accent" : "text-muted-foreground"
                     )} />
                 )}
             </React.Fragment>
