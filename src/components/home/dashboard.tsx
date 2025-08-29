@@ -5,7 +5,7 @@ import { Leaf, DollarSign, HeartHandshake } from "lucide-react";
 export function Dashboard() {
   return (
     <section className="py-16 sm:py-24 bg-background">
-      <div className="container">
+      <div className="container ml-4">
         <div className="text-center mb-12">
             <h2 className="font-headline text-4xl font-bold text-foreground">Live Ecosystem Snapshot</h2>
             <p className="mt-2 text-lg text-muted-foreground">Real-time data from the DeNeo network.</p>
