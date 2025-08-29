@@ -3,12 +3,12 @@ import { List, Wheat, Milk, Grape, Carrot, Beef } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 const products = [
-  { name: "Organic Corn", quantity: "500kg", price: "1.2 DNT/kg", delivery: "24h", verified: true, image: "https://picsum.photos/400/300?random=1", dataAiHint: "corn field" },
-  { name: "Fresh Milk", quantity: "200L", price: "2.5 DNT/L", delivery: "48h", verified: true, image: "https://picsum.photos/400/300?random=2", dataAiHint: "milk bottle" },
-  { name: "Free-Range Livestock", quantity: "50 head", price: "500 DNT/head", delivery: "On Request", verified: true, image: "https://picsum.photos/400/300?random=3", dataAiHint: "cattle pasture" },
-  { name: "Heirloom Tomatoes", quantity: "150kg", price: "3.0 DNT/kg", delivery: "24h", verified: false, image: "https://picsum.photos/400/300?random=4", dataAiHint: "heirloom tomatoes" },
-  { name: "Artisanal Cheese", quantity: "50kg", price: "15 DNT/kg", delivery: "72h", verified: true, image: "https://picsum.photos/400/300?random=5", dataAiHint: "artisanal cheese" },
-  { name: "Winter Wheat", quantity: "1000kg", price: "0.8 DNT/kg", delivery: "On Request", verified: true, image: "https://picsum.photos/400/300?random=6", dataAiHint: "wheat field" },
+  { name: "Organic Corn", quantity: "500kg", price: "1.2 ETH/kg", delivery: "24h", verified: true, image: "https://picsum.photos/400/300?random=1", dataAiHint: "corn field" },
+  { name: "Fresh Milk", quantity: "200L", price: "2.5 ETH/L", delivery: "48h", verified: true, image: "https://picsum.photos/400/300?random=2", dataAiHint: "milk bottle" },
+  { name: "Free-Range Livestock", quantity: "50 head", price: "500 ETH/head", delivery: "On Request", verified: true, image: "https://picsum.photos/400/300?random=3", dataAiHint: "cattle pasture" },
+  { name: "Heirloom Tomatoes", quantity: "150kg", price: "3.0 ETH/kg", delivery: "24h", verified: false, image: "https://picsum.photos/400/300?random=4", dataAiHint: "heirloom tomatoes" },
+  { name: "Artisanal Cheese", quantity: "50kg", price: "15 ETH/kg", delivery: "72h", verified: true, image: "https://picsum.photos/400/300?random=5", dataAiHint: "artisanal cheese" },
+  { name: "Winter Wheat", quantity: "1000kg", price: "0.8 ETH/kg", delivery: "On Request", verified: true, image: "https://picsum.photos/400/300?random=6", dataAiHint: "wheat field" },
 ];
 
 const categories = [

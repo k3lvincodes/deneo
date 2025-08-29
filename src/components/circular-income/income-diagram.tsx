@@ -16,7 +16,7 @@ export function IncomeDiagram() {
 
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="w-24 h-24 bg-primary/50 rounded-full flex flex-col items-center justify-center text-center">
-          <span className="text-2xl font-bold text-accent">DNT</span>
+          <span className="text-2xl font-bold text-accent">ETH</span>
           <span className="text-xs text-foreground">Tokens</span>
         </div>
       </div>

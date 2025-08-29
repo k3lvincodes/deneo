@@ -43,7 +43,7 @@ export function Dashboard() {
               <DollarSign className="h-6 w-6 text-accent" />
             </CardHeader>
             <CardContent>
-              <div className="text-4xl font-bold text-foreground">1,234,567 DNT</div>
+              <div className="text-4xl font-bold text-foreground">1,234,567 ETH</div>
               <p className="text-xs text-muted-foreground mt-1">Live token rewards in circulation</p>
               <div className="mt-4">
                   <p className="text-sm font-medium">Last transaction:</p>
