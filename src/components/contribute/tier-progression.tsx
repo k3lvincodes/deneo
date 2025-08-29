@@ -3,10 +3,10 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 const tiers = [
-    { name: "Tier A", active: false },
+    { name: "Tier A", active: true },
     { name: "Tier B", active: false },
-    { name: "Tier C", active: true },
-    { name: "Tier D", active: true },
+    { name: "Tier C", active: false },
+    { name: "Tier D", active: false },
 ]
 
 export function TierProgression() {
