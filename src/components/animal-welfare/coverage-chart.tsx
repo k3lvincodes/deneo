@@ -3,12 +3,19 @@
 import { Pie, PieChart, ResponsiveContainer, Cell } from "recharts"
 import { ChartConfig, ChartContainer } from "@/components/ui/chart"
 
-const chartData = [{ name: "Covered", value: 78, fill: "var(--color-covered)" }]
+const chartData = [
+  { name: "Covered", value: 78, fill: "var(--color-covered)" },
+  { name: "Not Covered", value: 22, fill: "var(--color-not-covered)" },
+]
 
 const chartConfig = {
   covered: {
     label: "Covered",
     color: "hsl(var(--accent))",
+  },
+  "not-covered": {
+    label: "Not Covered",
+    color: "hsl(var(--muted))",
   },
 } satisfies ChartConfig
 
@@ -34,7 +41,6 @@ export function CoverageChart() {
             {chartData.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.fill} />
             ))}
-             <Cell fill="hsl(var(--muted))" />
           </Pie>
            <text
             x="50%"
