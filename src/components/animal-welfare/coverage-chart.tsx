@@ -41,7 +41,7 @@ export function CoverageChart() {
             y="50%"
             textAnchor="middle"
             dominantBaseline="middle"
-            className="fill-foreground text-5xl font-bold"
+            className="fill-foreground text-3xl font-bold"
           >
             {chartData[0].value.toFixed(0)}%
           </text>
