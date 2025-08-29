@@ -11,7 +11,7 @@ export function HeroSection() {
           Decentralized Farming • Animal Welfare • Circular Income
         </h1>
         <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
-          Welcome to DeNeo Nexus, a futuristic yet organic digital ecosystem merging blockchain transparency with nature-inspired visuals. Join a living, regenerative economy where every action is rewarded and tracked on-chain.
+          Welcome to DeNeo, a futuristic yet organic digital ecosystem merging blockchain transparency with nature-inspired visuals. Join a living, regenerative economy where every action is rewarded and tracked on-chain.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <Button asChild size="lg" className="glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">

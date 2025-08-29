@@ -5,7 +5,7 @@ import { Footer } from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'DeNeo Nexus',
+  title: 'DeNeo',
   description: 'Decentralized Farming • Animal Welfare • Circular Income',
 };
 

@@ -8,7 +8,7 @@ export function Dashboard() {
       <div className="container">
         <div className="text-center mb-12">
             <h2 className="font-headline text-4xl font-bold text-foreground">Live Ecosystem Snapshot</h2>
-            <p className="mt-2 text-lg text-muted-foreground">Real-time data from the DeNeo Nexus network.</p>
+            <p className="mt-2 text-lg text-muted-foreground">Real-time data from the DeNeo network.</p>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <Card className="bg-card/50 border-border/50 shadow-lg hover:border-accent/50 transition-colors duration-300">

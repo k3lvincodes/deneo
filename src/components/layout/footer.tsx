@@ -9,7 +9,7 @@ export function Footer() {
             <Logo />
         </div>
         <p className="text-sm text-muted-foreground text-center">
-            © {new Date().getFullYear()} DeNeo Nexus. All Rights Reserved.
+            © {new Date().getFullYear()} DeNeo. All Rights Reserved.
         </p>
         <div className="flex flex-1 items-center justify-end gap-4">
             <a href="#" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-accent transition-colors">
