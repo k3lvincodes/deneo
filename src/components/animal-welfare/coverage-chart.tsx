@@ -16,7 +16,7 @@ export function CoverageChart() {
   return (
     <ChartContainer
       config={chartConfig}
-      className="mx-auto aspect-square max-h-[250px]"
+      className="mx-auto aspect-square max-h-[150px]"
     >
       <ResponsiveContainer>
         <PieChart>
@@ -24,8 +24,8 @@ export function CoverageChart() {
             data={chartData}
             dataKey="value"
             nameKey="name"
-            innerRadius={80}
-            outerRadius={100}
+            innerRadius={60}
+            outerRadius={75}
             startAngle={90}
             endAngle={450}
             cy="50%"
