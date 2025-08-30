@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Logo } from "@/components/shared/logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { ShoppingCart } from "lucide-react";
 
 const navLinks = [
   { href: "/marketplace", label: "Marketplace" },
@@ -37,7 +38,13 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
+          <Button asChild variant="ghost" size="icon" className="glow-on-hover">
+            <Link href="/cart">
+              <ShoppingCart className="h-5 w-5" />
+              <span className="sr-only">Cart</span>
+            </Link>
+          </Button>
           <Button asChild className="glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">
             <Link href="/contribute">Join as Contributor</Link>
           </Button>
