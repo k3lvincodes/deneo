@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'grid-pattern': "radial-gradient(circle at 1px 1px, hsl(var(--accent) / 0.4) 1.5px, transparent 0), linear-gradient(rgba(255,255,255,0.0) 0px, transparent 300px), linear-gradient(90deg, rgba(255,255,255,0.0) 0px, transparent 300px)",
+        'grid-pattern': "radial-gradient(circle at 1px 1px, hsl(var(--accent) / 0.5) 1.5px, transparent 0), linear-gradient(rgba(255,255,255,0.0) 0px, transparent 300px), linear-gradient(90deg, rgba(255,255,255,0.0) 0px, transparent 300px)",
       },
       fontFamily: {
         body: ['Poppins', 'sans-serif'],
