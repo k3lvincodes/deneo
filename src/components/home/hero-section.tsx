@@ -7,7 +7,7 @@ export function HeroSection() {
     <section className="relative py-24 md:py-32 lg:py-48 text-center bg-gradient-to-b from-background to-primary/10">
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
       <div className="container relative z-10 mx-auto">
-        <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-foreground to-foreground/70">
+        <h1 className="font-headline text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-foreground to-foreground/70">
           Decentralized Farming • Animal Welfare • Circular Income
         </h1>
         <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
