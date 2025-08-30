@@ -23,7 +23,6 @@
     --border: 149 63% 10%;
     --input: 149 63% 10%;
     --ring: 40 100% 64%;
-    --radius: 0.5rem;
     --chart-1: 149 63% 17%;
     --chart-2: 40 100% 64%;
     --chart-3: 150 15% 96%;
@@ -63,43 +62,27 @@
   }
 
   body::before {
-    content: '';
+    content: "";
     position: absolute;
-    top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      to top,
-      hsla(0, 0%, 100%, 0) 0%,
-      hsla(0, 0%, 100%, 0.013) 8.1%,
-      hsla(0, 0%, 100%, 0.049) 15.5%,
-      hsla(0, 0%, 100%, 0.104) 22.5%,
-      hsla(0, 0%, 100%, 0.175) 29%,
-      hsla(0, 0%, 100%, 0.259) 35.3%,
-      hsla(0, 0%, 100%, 0.352) 41.2%,
-      hsla(0, 0%, 100%, 0.45) 47.1%,
-      hsla(0, 0%, 100%, 0.55) 52.9%,
-      hsla(0, 0%, 100%, 0.648) 58.8%,
-      hsla(0, 0%, 100%, 0.741) 64.7%,
-      hsla(0, 0%, 100%, 0.825) 71%,
-      hsla(0, 0%, 100%, 0.896) 77.5%,
-      hsla(0, 0%, 100%, 0.951) 84.5%,
-      hsla(0, 0%, 100%, 0.987) 91.9%,
-      hsla(0, 0%, 100%, 1) 100%
-    );
-    opacity: 0.05;
+    top: 0;
+    height: 200%;
     z-index: -1;
-    animation: wave 15s cubic-bezier(0.5, 0.5, 0.5, 0.5) infinite alternate;
+    background: 
+      linear-gradient(to top, hsla(140, 50%, 95%, 0.15) 0%, hsla(140, 50%, 95%, 0.05) 50%, transparent 70%),
+      radial-gradient(ellipse at 50% -50%, hsla(140, 50%, 95%, 0.3) 0%, transparent 100%);
+    background-size: 100% 50%;
+    animation: wave 20s linear infinite;
   }
 }
 
 @keyframes wave {
   0% {
-    transform: translateY(100%);
+    transform: translateY(-50%) rotate(0deg) scale(1.2, 1);
   }
   100% {
-    transform: translateY(-100%);
+    transform: translateY(0%) rotate(360deg) scale(1.2, 1);
   }
 }
 

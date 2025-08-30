@@ -89,14 +89,14 @@ export default {
           },
         },
         'wave': {
-          '0%': { transform: 'translateY(100%)' },
-          '100%': { transform: 'translateY(-100%)' },
+          '0%': { transform: 'translateY(-50%) rotate(0deg) scale(1.2, 1)' },
+          '100%': { transform: 'translateY(0%) rotate(360deg) scale(1.2, 1)' },
         }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'wave': 'wave 15s cubic-bezier(0.5, 0.5, 0.5, 0.5) infinite alternate',
+        'wave': 'wave 20s linear infinite',
       },
     },
   },
