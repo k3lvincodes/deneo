@@ -58,17 +58,27 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground relative overflow-x-hidden;
+    @apply bg-background text-foreground overflow-x-hidden;
   }
 
-  body::before {
+  .wave-bg {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+  }
+  
+  .wave-bg::before {
     content: "";
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     height: 200%;
-    z-index: -1;
+    z-index: 0;
     background: 
       linear-gradient(to top, hsla(140, 50%, 95%, 0.15) 0%, hsla(140, 50%, 95%, 0.05) 50%, transparent 70%),
       radial-gradient(ellipse at 50% -50%, hsla(140, 50%, 95%, 0.3) 0%, transparent 100%);
