@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'grid-pattern': "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+      },
       fontFamily: {
         body: ['Poppins', 'sans-serif'],
         headline: ['Montserrat', 'serif'],
