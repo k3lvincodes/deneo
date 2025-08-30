@@ -32,7 +32,7 @@ export default function CartPage() {
   return (
     <div className="container mx-auto py-12">
       <div className="text-center mb-12">
-        <h1 className="font-headline text-5xl font-bold">Shopping Cart</h1>
+        <h1 className="font-headline text-4xl font-bold">Shopping Cart</h1>
         <p className="mt-2 text-lg text-muted-foreground">Review your items before proceeding to checkout.</p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
