@@ -88,10 +88,16 @@ export default {
             height: '0',
           },
         },
+        'wave': {
+          '0%': { transform: 'translateY(10%) scale(1)', opacity: '0.8' },
+          '50%': { transform: 'translateY(-10%) scale(1.2)', opacity: '1' },
+          '100%': { transform: 'translateY(10%) scale(1)', opacity: '0.8' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'wave': 'wave 10s infinite linear',
       },
     },
   },
