@@ -24,7 +24,7 @@ export default function MarketplacePage() {
   return (
     <div className="container mx-auto py-12">
       <div className="text-center mb-12">
-        <h1 className="font-headline text-5xl font-bold">Decentralized Marketplace</h1>
+        <h1 className="font-headline text-4xl font-bold">Decentralized Marketplace</h1>
         <p className="mt-2 text-lg text-muted-foreground">Browse and trade resources directly from our community of verified farmers.</p>
       </div>
       <div className="flex flex-col md:flex-row gap-8">
