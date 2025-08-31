@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
-import { MinusCircle, PlusCircle, Trash2 } from "lucide-react";
+import { MinusCircle, PlusCircle, Trash2, Leaf, HeartHandshake, Lock } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 
 const cartItems = [
   {
@@ -33,7 +35,7 @@ export default function CartPage() {
     <div className="container mx-auto py-12">
       <div className="text-center mb-12">
         <h1 className="font-headline text-4xl font-bold">Shopping Cart</h1>
-        <p className="mt-2 text-lg text-muted-foreground">Review your items before proceeding to checkout.</p>
+        <p className="mt-2 text-lg text-muted-foreground">Review your items and choose your impact before checkout.</p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
         <div className="lg:col-span-2">
@@ -83,7 +85,7 @@ export default function CartPage() {
             </CardContent>
           </Card>
         </div>
-        <div className="lg:col-span-1">
+        <div className="lg:col-span-1 space-y-8">
           <Card className="bg-card/50 border-border/50 shadow-lg">
             <CardHeader>
               <CardTitle>Order Summary</CardTitle>
@@ -112,6 +114,35 @@ export default function CartPage() {
                 Proceed to Checkout
               </Button>
             </CardFooter>
+          </Card>
+          <Card className="bg-card/50 border-border/50 shadow-lg">
+            <CardHeader>
+              <CardTitle>Choose Your Impact</CardTitle>
+              <CardDescription>Magnify the positive effect of your purchase.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                <div className="flex items-center space-x-3 p-3 bg-secondary rounded-lg">
+                    <Checkbox id="impact-tree" />
+                    <Label htmlFor="impact-tree" className="flex items-center gap-3 cursor-pointer">
+                        <Leaf className="text-accent"/>
+                        <span>Plant +1 Tree (0.1 ETH)</span>
+                    </Label>
+                </div>
+                <div className="flex items-center space-x-3 p-3 bg-secondary rounded-lg">
+                    <Checkbox id="impact-donate" />
+                    <Label htmlFor="impact-donate" className="flex items-center gap-3 cursor-pointer">
+                        <HeartHandshake className="text-accent"/>
+                        <span>Donate 5% to Animal Rescue</span>
+                    </Label>
+                </div>
+                 <div className="flex items-center space-x-3 p-3 bg-secondary rounded-lg">
+                    <Checkbox id="impact-lock" />
+                    <Label htmlFor="impact-lock" className="flex items-center gap-3 cursor-pointer">
+                        <Lock className="text-accent"/>
+                        <span>Lock tokens for Circular Income</span>
+                    </Label>
+                </div>
+            </CardContent>
           </Card>
         </div>
       </div>

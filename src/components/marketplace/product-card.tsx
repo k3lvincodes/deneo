@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ShieldCheck, ShieldOff, Truck, Package } from "lucide-react";
+import { ShieldCheck, ShieldOff, Truck, Package, Cuboid } from "lucide-react";
 
 type ProductCardProps = {
   name: string;
@@ -45,9 +45,14 @@ export function ProductCard({ name, quantity, price, delivery, verified, image, 
           <p className="flex items-center"><Truck className="h-4 w-4 mr-2 text-accent" /> Delivery: <span className="font-semibold ml-1 text-foreground">{delivery}</span></p>
         </div>
       </CardContent>
-      <CardFooter className="p-4 bg-secondary/50 flex justify-between items-center">
-        <p className="text-xl font-bold text-accent">{price}</p>
-        <Button className="glow-on-hover">Add to Cart</Button>
+      <CardFooter className="p-4 bg-secondary/50 flex-col items-stretch space-y-3">
+        <div className="flex justify-between items-center">
+          <p className="text-xl font-bold text-accent">{price}</p>
+          <Button className="glow-on-hover">Add to Cart</Button>
+        </div>
+        <Button variant="outline" size="sm" className="w-full glow-on-hover">
+          <Cuboid className="mr-2 h-4 w-4" /> View On-chain Data
+        </Button>
       </CardFooter>
     </Card>
   );

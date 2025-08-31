@@ -1,5 +1,5 @@
 import { ProductCard } from "@/components/marketplace/product-card";
-import { List, Wheat, Milk, Grape, Carrot, Beef, PlusCircle, Package, DollarSign } from "lucide-react";
+import { List, Wheat, Milk, Grape, Carrot, Beef, PlusCircle, Package, DollarSign, ShieldCheck, FileText } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Progress } from "@/components/ui/progress";
 
 
 const products = [
@@ -119,6 +120,31 @@ export default function DeFarmPage() {
                             </Table>
                         </CardContent>
                     </Card>
+                    <Card className="bg-card/50 border-border/50 shadow-lg">
+                        <CardHeader>
+                            <CardTitle>Smart Contract Farming Insurance</CardTitle>
+                            <CardDescription>Secure on-chain insurance for your crops and livestock.</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="flex items-center justify-between p-4 bg-secondary rounded-lg">
+                                <div className="flex items-center gap-4">
+                                    <ShieldCheck className="text-accent h-8 w-8"/>
+                                    <div>
+                                        <p className="font-bold">Coverage Status</p>
+                                        <p className="text-green-400 font-semibold">Active - 85% Covered</p>
+                                    </div>
+                                </div>
+                                <Button className="glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">
+                                    <FileText className="mr-2 h-4 w-4" /> File a Claim
+                                </Button>
+                            </div>
+                            <div>
+                                <Label>Coverage Progress</Label>
+                                <Progress value={85} className="h-2 mt-1"/>
+                                <p className="text-xs text-muted-foreground mt-1">Next premium due in 15 days.</p>
+                            </div>
+                        </CardContent>
+                    </Card>
                 </div>
                 <div className="space-y-8">
                      <Card className="bg-card/50 border-border/50 shadow-lg">
@@ -145,7 +171,7 @@ export default function DeFarmPage() {
                     <Card className="bg-card/50 border-border/50 shadow-lg">
                         <CardHeader>
                             <CardTitle>Add New Product</CardTitle>
-                            <CardDescription>List a new product on the marketplace.</CardDescription>
+                            <CardDescription>List and tokenize a new product on the marketplace.</CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div>
@@ -180,7 +206,7 @@ export default function DeFarmPage() {
                                 <Input id="delivery" placeholder="e.g., 24h" className="bg-background" />
                             </div>
                             <Button className="w-full glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">
-                                <PlusCircle className="mr-2 h-4 w-4" /> Add Product
+                                <PlusCircle className="mr-2 h-4 w-4" /> Add & Tokenize Product
                             </Button>
                         </CardContent>
                     </Card>
