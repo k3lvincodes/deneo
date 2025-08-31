@@ -37,7 +37,7 @@ export function Dashboard() {
             </CardContent>
           </Card>
 
-          <Card className="bg-card/50 border-border/50 shadow-lg hover:border-accent/50 transition-colors duration-300">
+          <Card className="bg-card/50 border-border/50 shadow-lg hover:border-accent/50 transition-colors duration-300 md:col-span-2 lg:col-span-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-lg font-medium">Circular Income Ticker</CardTitle>
               <DollarSign className="h-6 w-6 text-accent" />
