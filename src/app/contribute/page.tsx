@@ -1,7 +1,7 @@
 import { TierProgression } from "@/components/contribute/tier-progression";
 import { OnboardingWizard } from "@/components/contribute/onboarding-wizard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Award, Zap } from "lucide-react";
 
 const benefits = [
     "Increased token rewards",
@@ -10,6 +10,12 @@ const benefits = [
     "Priority support",
     "Early access to new features",
     "Direct line to development team"
+];
+
+const missions = [
+    { title: "Plant 5 Trees", reward: "Bonus Tokens", icon: Zap },
+    { title: "Report 2 Hazards", reward: "Community Badge", icon: Award },
+    { title: "Verify a Farm", reward: "Reputation Points", icon: Zap },
 ]
 
 export default function ContributePage() {
@@ -44,6 +50,25 @@ export default function ContributePage() {
                                     </li>
                                 ))}
                             </ul>
+                        </CardContent>
+                    </Card>
+                     <Card className="bg-card/50 border-border/50 shadow-lg mt-8">
+                        <CardHeader>
+                            <CardTitle className="text-2xl text-accent">Community Missions</CardTitle>
+                             <CardDescription>Complete quests to earn rewards and build your reputation.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                           <div className="space-y-4">
+                                {missions.map((mission, index) => (
+                                    <div key={index} className="flex items-center justify-between p-3 bg-secondary rounded-lg">
+                                        <div className="flex items-center gap-3">
+                                            <mission.icon className="text-accent"/>
+                                            <span className="font-medium">{mission.title}</span>
+                                        </div>
+                                        <span className="font-bold text-sm text-accent">{mission.reward}</span>
+                                </div>
+                                ))}
+                           </div>
                         </CardContent>
                     </Card>
                 </div>

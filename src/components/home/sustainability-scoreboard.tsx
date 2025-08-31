@@ -18,7 +18,7 @@ export function SustainabilityScoreboard() {
         <h2 className="font-headline text-4xl font-bold text-foreground">Sustainability Scoreboard</h2>
         <p className="mt-2 text-lg text-muted-foreground">Tracking our collective impact on the planet.</p>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
         <Card className="bg-card/50 border-border/50 shadow-lg">
           <CardHeader>
             <CardTitle>Global Metrics</CardTitle>
