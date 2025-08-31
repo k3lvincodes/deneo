@@ -6,6 +6,7 @@ import { Star, ShieldCheck, Package, Truck, Leaf, Cuboid, PlusCircle } from "luc
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
+import { Label } from "@/components/ui/label";
 
 export default function ProductDetailPage() {
   const product = {
