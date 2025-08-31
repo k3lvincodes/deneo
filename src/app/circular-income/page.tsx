@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { IncomeDiagram } from "@/components/circular-income/income-diagram";
 import { Leaderboard } from "@/components/circular-income/leaderboard";
 import { TrendingUp, Users, Repeat } from "lucide-react";
+import { DAOProposals } from "@/components/circular-income/dao-proposals";
 
 export default function CircularIncomePage() {
   return (
@@ -33,6 +34,15 @@ export default function CircularIncomePage() {
                         <CardContent>
                             <p className="text-3xl font-bold text-foreground">$150,432</p>
                             <p className="text-xs text-muted-foreground">Total value circulated this month</p>
+                        </CardContent>
+                    </Card>
+                     <Card className="bg-card/50 border-border/50 shadow-lg">
+                        <CardHeader>
+                            <CardTitle className="text-xl text-accent">DAO Governance</CardTitle>
+                             <CardDescription>Vote on ecosystem proposals.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <DAOProposals />
                         </CardContent>
                     </Card>
                     <Card className="bg-card/50 border-border/50 shadow-lg">
