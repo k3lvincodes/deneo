@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { ShoppingCart } from "lucide-react";
 
 const navLinks = [
-  { href: "/marketplace", label: "Marketplace" },
+  { href: "/defarm", label: "DeFarm" },
   { href: "/animal-welfare", label: "Animal Welfare" },
   { href: "/circular-income", label: "Circular Income" },
 ];
