@@ -27,13 +27,13 @@ export default function AnimalWelfarePage() {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-1 space-y-8">
-                 <Card className="bg-card/50 border-border/50 shadow-lg h-full">
+                 <Card className="bg-card/50 border-border/50 shadow-lg">
                     <CardHeader>
                         <CardTitle className="text-2xl text-accent">Coverage Dashboard</CardTitle>
                         <CardDescription>Ecosystem-wide insurance metrics.</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <div className="h-[250px] my-4">
+                        <div className="my-4">
                             <CoverageChart />
                         </div>
                         <div className="space-y-4">
