@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -20,27 +21,28 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center justify-start flex-1">
           <Link href="/" className="flex items-center space-x-2">
             <Logo />
           </Link>
-          <nav className="hidden md:flex items-center justify-center space-x-6 text-sm font-medium">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  "transition-colors hover:text-accent",
-                  pathname === link.href ? "text-accent" : "text-foreground/60"
-                )}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
         </div>
         
-        <div className="flex items-center gap-2">
+        <nav className="hidden md:flex items-center justify-center space-x-6 text-sm font-medium flex-1">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={cn(
+                "transition-colors hover:text-accent",
+                pathname === link.href ? "text-accent" : "text-foreground/60"
+              )}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+        
+        <div className="flex items-center justify-end gap-2 flex-1">
           <Button asChild variant="ghost" size="icon" className="glow-on-hover">
             <Link href="/cart">
               <ShoppingCart className="h-5 w-5" />
