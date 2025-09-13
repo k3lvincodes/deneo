@@ -49,7 +49,7 @@ export function Header() {
               <span className="sr-only">Cart</span>
             </Link>
           </Button>
-          <Button asChild className="glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90 hidden sm:flex">
+          <Button asChild className="glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90 hidden lg:flex">
             <Link href="/contribute">Join as Contributor</Link>
           </Button>
           <div className="lg:hidden">
@@ -78,6 +78,15 @@ export function Header() {
                             {link.label}
                         </Link>
                         ))}
+                         <Link
+                            href="/contribute"
+                            className={cn(
+                                "transition-colors hover:text-accent",
+                                pathname === "/contribute" ? "text-accent" : "text-foreground/60"
+                            )}
+                            >
+                            Join as Contributor
+                        </Link>
                     </nav>
                 </SheetContent>
             </Sheet>
