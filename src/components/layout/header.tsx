@@ -65,29 +65,27 @@ export function Header() {
                     <SheetDescription className="sr-only">
                         Main navigation links for DeNeo Nexus.
                     </SheetDescription>
-                    <nav className="grid gap-6 text-lg font-medium mt-8">
-                        {navLinks.map((link) => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            className={cn(
-                                "transition-colors hover:text-accent",
-                                pathname === link.href ? "text-accent" : "text-foreground/60"
-                            )}
-                            >
-                            {link.label}
-                        </Link>
-                        ))}
-                         <Link
-                            href="/contribute"
-                            className={cn(
-                                "transition-colors hover:text-accent",
-                                pathname === "/contribute" ? "text-accent" : "text-foreground/60"
-                            )}
-                            >
-                            Join as Contributor
-                        </Link>
-                    </nav>
+                    <div className="flex flex-col h-full">
+                        <nav className="grid gap-6 text-lg font-medium mt-8 flex-grow">
+                            {navLinks.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className={cn(
+                                    "transition-colors hover:text-accent",
+                                    pathname === link.href ? "text-accent" : "text-foreground/60"
+                                )}
+                                >
+                                {link.label}
+                            </Link>
+                            ))}
+                        </nav>
+                        <div className="mt-auto">
+                             <Button asChild className="w-full glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">
+                                <Link href="/contribute">Join as Contributor</Link>
+                            </Button>
+                        </div>
+                    </div>
                 </SheetContent>
             </Sheet>
           </div>
