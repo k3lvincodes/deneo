@@ -7,7 +7,7 @@ import { Logo } from "@/components/shared/logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ShoppingCart, Menu } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 
 const navLinks = [
   { href: "/defarm", label: "DeFarm" },
@@ -61,6 +61,10 @@ export function Header() {
                     </Button>
                 </SheetTrigger>
                 <SheetContent side="left" className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                    <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
+                    <SheetDescription className="sr-only">
+                        Main navigation links for DeNeo Nexus.
+                    </SheetDescription>
                     <nav className="grid gap-6 text-lg font-medium mt-8">
                         {navLinks.map((link) => (
                         <Link
