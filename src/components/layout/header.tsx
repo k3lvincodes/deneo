@@ -66,7 +66,7 @@ export function Header() {
                         Main navigation links for DeNeo Nexus.
                     </SheetDescription>
                     <div className="flex flex-col h-full">
-                        <nav className="grid gap-4 text-lg font-medium mt-6 flex-grow">
+                        <nav className="grid gap-4 text-lg font-medium mt-2 flex-grow">
                             {navLinks.map((link) => (
                             <Link
                                 key={link.href}
