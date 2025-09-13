@@ -27,13 +27,13 @@ export function Header() {
           </Link>
         </div>
         
-        <nav className="hidden md:flex items-center justify-center space-x-6 text-sm font-medium flex-1">
+        <nav className="hidden lg:flex items-center justify-center space-x-6 text-sm font-medium flex-1">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "transition-colors hover:text-accent",
+                "transition-colors hover:text-accent whitespace-nowrap",
                 pathname === link.href ? "text-accent" : "text-foreground/60"
               )}
             >
@@ -52,7 +52,7 @@ export function Header() {
           <Button asChild className="glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90 hidden sm:flex">
             <Link href="/contribute">Join as Contributor</Link>
           </Button>
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <Sheet>
                 <SheetTrigger asChild>
                     <Button variant="ghost" size="icon" className="glow-on-hover">
