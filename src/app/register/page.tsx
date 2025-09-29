@@ -19,6 +19,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Camera, Upload, Trash2, ImagePlus } from "lucide-react";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 export default function RegisterPage() {
   const { toast } = useToast();
@@ -170,7 +171,10 @@ export default function RegisterPage() {
                     </div>
                      <div className="space-y-2">
                       <Label htmlFor="face-photo">Face Photo</Label>
-                      <div className="p-4 border rounded-md bg-background space-y-4">
+                      <div className={cn(
+                        "border rounded-md bg-background",
+                        !showCamera && !capturedImage ? "h-10 flex items-center justify-center p-0" : "p-4 space-y-4"
+                      )}>
                         {capturedImage ? (
                           <div className="space-y-2 text-center">
                             <Image src={capturedImage} alt="Captured face" width={200} height={150} className="rounded-md mx-auto" />
@@ -179,7 +183,7 @@ export default function RegisterPage() {
                             </Button>
                           </div>
                         ) : !showCamera ? (
-                           <Button type="button" variant="outline" onClick={() => setShowCamera(true)} className="w-full">
+                           <Button type="button" variant="outline" onClick={() => setShowCamera(true)} className="w-full h-full">
                                 <ImagePlus className="mr-2 h-4 w-4" /> Add Face Photo
                             </Button>
                         ) : (
@@ -280,3 +284,5 @@ export default function RegisterPage() {
     </div>
   );
 }
+
+    
