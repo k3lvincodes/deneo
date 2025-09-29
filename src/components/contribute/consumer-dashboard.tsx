@@ -92,14 +92,18 @@ export function ConsumerDashboard() {
                                                             <Label htmlFor="req-dest">Destination</Label>
                                                             <Input id="req-dest" placeholder="123 Green Street, Terra" required className="bg-background"/>
                                                         </div>
+                                                        <div className="space-y-2">
+                                                            <Label htmlFor="req-quantity">Quantity (kg)</Label>
+                                                            <Input id="req-quantity" type="number" placeholder="e.g., 10" required min="1" className="bg-background"/>
+                                                        </div>
                                                         <div className="grid grid-cols-2 gap-4">
                                                             <div className="space-y-2">
-                                                                <Label htmlFor="req-contact1">Contact Number 1</Label>
-                                                                <Input id="req-contact1" type="tel" required className="bg-background"/>
+                                                                <Label htmlFor="req-contact1">Phone Number 1</Label>
+                                                                <Input id="req-contact1" type="tel" required className="bg-background" placeholder="+1234567890"/>
                                                             </div>
                                                              <div className="space-y-2">
-                                                                <Label htmlFor="req-contact2">Contact Number 2</Label>
-                                                                <Input id="req-contact2" type="tel" className="bg-background"/>
+                                                                <Label htmlFor="req-contact2">Phone Number 2</Label>
+                                                                <Input id="req-contact2" type="tel" className="bg-background" placeholder="+1234567890"/>
                                                             </div>
                                                         </div>
                                                         <div className="space-y-2">
