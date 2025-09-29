@@ -16,7 +16,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Camera, Upload, Trash2 } from "lucide-react";
+import { Camera, Upload, Trash2, ImagePlus } from "lucide-react";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import Image from "next/image";
 
@@ -25,13 +25,14 @@ export default function RegisterPage() {
   const [productCount, setProductCount] = useState(1);
   const [hasCameraPermission, setHasCameraPermission] = useState<boolean | null>(null);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
+  const [showCamera, setShowCamera] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const getCameraPermission = async () => {
-      if (typeof window !== 'undefined' && navigator.mediaDevices) {
+      if (showCamera && typeof window !== 'undefined' && navigator.mediaDevices) {
         try {
           const stream = await navigator.mediaDevices.getUserMedia({ video: true });
           setHasCameraPermission(true);
@@ -42,8 +43,6 @@ export default function RegisterPage() {
           console.error("Error accessing camera:", error);
           setHasCameraPermission(false);
         }
-      } else {
-        setHasCameraPermission(false);
       }
     };
     getCameraPermission();
@@ -54,7 +53,7 @@ export default function RegisterPage() {
         stream.getTracks().forEach(track => track.stop());
       }
     };
-  }, []);
+  }, [showCamera]);
 
   const handleCapture = () => {
     if (videoRef.current && canvasRef.current) {
@@ -67,6 +66,7 @@ export default function RegisterPage() {
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
         const dataUrl = canvas.toDataURL("image/jpeg");
         setCapturedImage(dataUrl);
+        setShowCamera(false); 
       }
     }
   };
@@ -77,6 +77,7 @@ export default function RegisterPage() {
       const reader = new FileReader();
       reader.onload = (e) => {
         setCapturedImage(e.target?.result as string);
+        setShowCamera(false); 
       };
       reader.readAsDataURL(file);
     }
@@ -167,16 +168,20 @@ export default function RegisterPage() {
                         className="bg-background"
                       />
                     </div>
-                    <div className="space-y-2">
+                     <div className="space-y-2">
                       <Label htmlFor="face-photo">Face Photo</Label>
-                      <div className="p-4 border rounded-md bg-background">
+                      <div className="p-4 border rounded-md bg-background space-y-4">
                         {capturedImage ? (
                           <div className="space-y-2 text-center">
                             <Image src={capturedImage} alt="Captured face" width={200} height={150} className="rounded-md mx-auto" />
-                            <Button variant="outline" size="sm" onClick={() => setCapturedImage(null)}>
+                            <Button variant="outline" size="sm" onClick={() => { setCapturedImage(null); setShowCamera(true); }}>
                               <Trash2 className="mr-2 h-4 w-4" /> Retake Photo
                             </Button>
                           </div>
+                        ) : !showCamera ? (
+                           <Button type="button" variant="outline" onClick={() => setShowCamera(true)} className="w-full">
+                                <ImagePlus className="mr-2 h-4 w-4" /> Add Face Photo
+                            </Button>
                         ) : (
                           <div className="space-y-4">
                             <video ref={videoRef} className="w-full aspect-video rounded-md bg-muted" autoPlay muted playsInline />
