@@ -14,8 +14,8 @@ export function HeroSection() {
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <Button asChild size="lg" className="glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">
-            <Link href="/marketplace">
-              Enter Marketplace <ArrowRight className="ml-2 h-5 w-5" />
+            <Link href="/defarm">
+              Enter DeFarm <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="glow-on-hover">
