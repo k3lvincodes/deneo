@@ -59,7 +59,7 @@ export function Header() {
             asChild
             className="glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90 hidden lg:flex"
           >
-            <Link href="/register">Register</Link>
+            <Link href="/contribute">Register</Link>
           </Button>
           <div className="lg:hidden">
             <Sheet>
@@ -97,7 +97,7 @@ export function Header() {
                       asChild
                       className="w-full glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90"
                     >
-                      <Link href="/register">Register</Link>
+                      <Link href="/contribute">Register</Link>
                     </Button>
                   </div>
                 </div>
