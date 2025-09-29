@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -16,13 +16,82 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { Camera, Upload, Trash2 } from "lucide-react";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import Image from "next/image";
 
 export default function RegisterPage() {
   const { toast } = useToast();
   const [productCount, setProductCount] = useState(1);
+  const [hasCameraPermission, setHasCameraPermission] = useState<boolean | null>(null);
+  const [capturedImage, setCapturedImage] = useState<string | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const getCameraPermission = async () => {
+      if (typeof window !== 'undefined' && navigator.mediaDevices) {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+          setHasCameraPermission(true);
+          if (videoRef.current) {
+            videoRef.current.srcObject = stream;
+          }
+        } catch (error) {
+          console.error("Error accessing camera:", error);
+          setHasCameraPermission(false);
+        }
+      } else {
+        setHasCameraPermission(false);
+      }
+    };
+    getCameraPermission();
+
+    return () => {
+      if (videoRef.current && videoRef.current.srcObject) {
+        const stream = videoRef.current.srcObject as MediaStream;
+        stream.getTracks().forEach(track => track.stop());
+      }
+    };
+  }, []);
+
+  const handleCapture = () => {
+    if (videoRef.current && canvasRef.current) {
+      const video = videoRef.current;
+      const canvas = canvasRef.current;
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const context = canvas.getContext("2d");
+      if (context) {
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const dataUrl = canvas.toDataURL("image/jpeg");
+        setCapturedImage(dataUrl);
+      }
+    }
+  };
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setCapturedImage(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleProviderSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!capturedImage) {
+      toast({
+        variant: "destructive",
+        title: "Missing Photo",
+        description: "Please upload or capture a face photo to register.",
+      });
+      return;
+    }
     // Mock transaction
     toast({
       title: "Transaction Sent",
@@ -41,7 +110,6 @@ export default function RegisterPage() {
       description: `Welcome! Your consumer ID is YFC_${mockId}.`,
     });
   };
-
 
   return (
     <div className="container mx-auto py-12">
@@ -100,13 +168,39 @@ export default function RegisterPage() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="face-photo">Face Photo URL</Label>
-                      <Input
-                        id="face-photo"
-                        placeholder="https://example.com/photo.jpg"
-                        required
-                        className="bg-background"
-                      />
+                      <Label htmlFor="face-photo">Face Photo</Label>
+                      <div className="p-4 border rounded-md bg-background">
+                        {capturedImage ? (
+                          <div className="space-y-2 text-center">
+                            <Image src={capturedImage} alt="Captured face" width={200} height={150} className="rounded-md mx-auto" />
+                            <Button variant="outline" size="sm" onClick={() => setCapturedImage(null)}>
+                              <Trash2 className="mr-2 h-4 w-4" /> Retake Photo
+                            </Button>
+                          </div>
+                        ) : (
+                          <div className="space-y-4">
+                            <video ref={videoRef} className="w-full aspect-video rounded-md bg-muted" autoPlay muted playsInline />
+                            <canvas ref={canvasRef} className="hidden" />
+                            {hasCameraPermission === false && (
+                              <Alert variant="destructive">
+                                <AlertTitle>Camera Access Denied</AlertTitle>
+                                <AlertDescription>
+                                  Please enable camera permissions to capture a photo. You can still upload an image.
+                                </AlertDescription>
+                              </Alert>
+                            )}
+                            <div className="flex gap-2">
+                              <Button type="button" onClick={handleCapture} disabled={!hasCameraPermission} className="flex-1">
+                                <Camera className="mr-2 h-4 w-4" /> Capture
+                              </Button>
+                              <Button type="button" variant="secondary" className="flex-1" onClick={() => fileInputRef.current?.click()}>
+                                <Upload className="mr-2 h-4 w-4" /> Upload
+                              </Button>
+                              <Input type="file" ref={fileInputRef} className="hidden" accept="image/*" onChange={handleFileUpload} />
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                   <div className="space-y-2">
