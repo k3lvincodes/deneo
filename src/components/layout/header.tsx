@@ -7,7 +7,13 @@ import { Logo } from "@/components/shared/logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ShoppingCart, Menu } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
 
 const navLinks = [
   { href: "/defarm", label: "DeFarm" },
@@ -26,7 +32,7 @@ export function Header() {
             <Logo />
           </Link>
         </div>
-        
+
         <nav className="hidden lg:flex items-center justify-center space-x-6 text-sm font-medium flex-1">
           {navLinks.map((link) => (
             <Link
@@ -41,7 +47,7 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        
+
         <div className="flex items-center justify-end gap-2 flex-1">
           <Button asChild variant="ghost" size="icon" className="glow-on-hover">
             <Link href="/cart">
@@ -49,40 +55,53 @@ export function Header() {
               <span className="sr-only">Cart</span>
             </Link>
           </Button>
-          <Button asChild className="glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90 hidden lg:flex">
-            <Link href="/contribute">Join as Contributor</Link>
+          <Button
+            asChild
+            className="glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90 hidden lg:flex"
+          >
+            <Link href="/register">Register</Link>
           </Button>
           <div className="lg:hidden">
             <Sheet>
-                <SheetTrigger asChild>
-                    <Button variant="ghost" size="icon" className="glow-on-hover">
-                        <Menu className="h-5 w-5" />
-                        <span className="sr-only">Open menu</span>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="glow-on-hover">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Open menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent
+                side="left"
+                className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+              >
+                <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
+                <SheetDescription className="sr-only">
+                  Main navigation links for DeNeo Nexus.
+                </SheetDescription>
+                <div className="flex h-full flex-col p-4">
+                  <div className="flex flex-col gap-4">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className={cn(
+                          "text-lg font-medium transition-colors hover:text-accent",
+                          pathname === link.href
+                            ? "text-accent"
+                            : "text-foreground/60"
+                        )}
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                    <Button
+                      asChild
+                      className="w-full glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90"
+                    >
+                      <Link href="/register">Register</Link>
                     </Button>
-                </SheetTrigger>
-                <SheetContent side="left" className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-                    <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
-                    <SheetDescription className="sr-only">
-                        Main navigation links for DeNeo Nexus.
-                    </SheetDescription>
-                    <div className="flex flex-col gap-4 pt-4">
-                        {navLinks.map((link) => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            className={cn(
-                                "text-lg font-medium transition-colors hover:text-accent",
-                                pathname === link.href ? "text-accent" : "text-foreground/60"
-                            )}
-                            >
-                            {link.label}
-                        </Link>
-                        ))}
-                        <Button asChild className="w-full glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">
-                            <Link href="/contribute">Join as Contributor</Link>
-                        </Button>
-                    </div>
-                </SheetContent>
+                  </div>
+                </div>
+              </SheetContent>
             </Sheet>
           </div>
         </div>
