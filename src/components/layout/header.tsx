@@ -78,26 +78,26 @@ export function Header() {
                   Main navigation links for DeNeo Nexus.
                 </SheetDescription>
                 <div className="flex flex-col p-4 gap-4">
-                    {navLinks.map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        className={cn(
-                          "text-lg font-medium transition-colors hover:text-accent",
-                          pathname === link.href
-                            ? "text-accent"
-                            : "text-foreground/60"
-                        )}
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
-                    <Button
-                      asChild
-                      className="w-full glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90"
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={cn(
+                        "text-lg font-medium transition-colors hover:text-accent",
+                        pathname === link.href
+                          ? "text-accent"
+                          : "text-foreground/60"
+                      )}
                     >
-                      <Link href="/contribute">Join as Contributor</Link>
-                    </Button>
+                      {link.label}
+                    </Link>
+                  ))}
+                  <Button
+                    asChild
+                    className="w-full glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90"
+                  >
+                    <Link href="/contribute">Join as Contributor</Link>
+                  </Button>
                 </div>
               </SheetContent>
             </Sheet>
