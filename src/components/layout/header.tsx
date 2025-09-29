@@ -11,14 +11,13 @@ import {
   Sheet,
   SheetContent,
   SheetTrigger,
-  SheetTitle,
-  SheetDescription,
 } from "@/components/ui/sheet";
 
 const navLinks = [
   { href: "/defarm", label: "DeFarm" },
   { href: "/animal-welfare", label: "Animal Welfare" },
   { href: "/circular-income", label: "Circular Income" },
+  { href: "/admin", label: "Admin" },
 ];
 
 export function Header() {
@@ -73,10 +72,6 @@ export function Header() {
                 side="left"
                 className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
               >
-                <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
-                <SheetDescription className="sr-only">
-                  Main navigation links for DeNeo Nexus.
-                </SheetDescription>
                 <div className="flex flex-col p-4 gap-4">
                   {navLinks.map((link) => (
                     <Link
