@@ -50,10 +50,9 @@ export default function AnimalWelfarePage() {
         setInspectionId(mockId);
         toast({
             title: "Inspection Requested",
-            description: `Your inspection ID is ${mockId}. You will be notified when it's confirmed.`,
+            description: `Your inspection ID is ${mockId}. You will be notified when it's confirmed. (View..._Inspection_ID getter)`,
         });
-        // In a real app, you'd poll a `View..._Inspection_ID` getter
-        // For this demo, we'll just simulate confirmation and move to the next stage.
+        
         setTimeout(() => {
             toast({
                 title: "Inspection Confirmed!",
@@ -86,7 +85,7 @@ export default function AnimalWelfarePage() {
         const mockTokenUri = `https://api.deneo.com/nft/${mockTokenId}`;
         toast({
             title: "Activating Insurance...",
-            description: `Requesting insurance for ${numAnimals} animals. Please confirm the transaction.`,
+            description: `Requesting insurance for ${numAnimals} animals. Please confirm the transaction. (check lengths via getters)`,
         });
 
         setTimeout(() => {
@@ -210,7 +209,7 @@ export default function AnimalWelfarePage() {
                  <Card className="bg-card/50 border-border/50 shadow-lg">
                     <CardHeader>
                         <CardTitle className="text-2xl text-accent">Coverage Dashboard</CardTitle>
-                        <CardDescription>Ecosystem-wide insurance metrics.</CardDescription>
+                        <CardDescription>Ecosystem-wide insurance metrics from getters.</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <div className="my-4">

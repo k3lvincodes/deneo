@@ -1,3 +1,6 @@
+
+"use client";
+
 import { ProductCard } from "@/components/marketplace/product-card";
 import { List, Wheat, Milk, Grape, Carrot, Beef, PlusCircle, Package, DollarSign, ShieldCheck, FileText } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
@@ -10,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
+import { useToast } from "@/hooks/use-toast";
 
 
 const products = [
@@ -46,6 +50,38 @@ const getStatusBadge = (status: string) => {
 }
 
 export default function DeFarmPage() {
+  const { toast } = useToast();
+
+  const handleAddProduct = (e: React.FormEvent) => {
+    e.preventDefault();
+    // This would call a contract function
+    toast({
+      title: "Adding Product...",
+      description: "Please confirm the transaction to list your new product.",
+    });
+    setTimeout(() => {
+      toast({
+        title: "Product Listed!",
+        description: "Your new product is now available on the DeFarm marketplace.",
+      });
+    }, 3000);
+  };
+
+  const handleClaim = (e: React.FormEvent) => {
+    e.preventDefault();
+    // This would call a contract function
+    toast({
+      title: "Filing Claim...",
+      description: "Please confirm the transaction to file your insurance claim.",
+    });
+    setTimeout(() => {
+      toast({
+        title: "Claim Filed",
+        description: "Your insurance claim has been submitted for review.",
+      });
+    }, 3000);
+  };
+
   return (
     <div className="container mx-auto py-12">
       <div className="text-center mb-12">
@@ -90,7 +126,7 @@ export default function DeFarmPage() {
                     <Card className="bg-card/50 border-border/50 shadow-lg">
                         <CardHeader>
                             <CardTitle>Track Orders</CardTitle>
-                            <CardDescription>Monitor incoming orders for your products.</CardDescription>
+                            <CardDescription>Monitor incoming orders for your products. Data from `Req_Ini` getter.</CardDescription>
                         </CardHeader>
                         <CardContent>
                              <Table>
@@ -133,12 +169,14 @@ export default function DeFarmPage() {
                                         <p className="text-green-400 font-semibold">Active - 85% Covered</p>
                                     </div>
                                 </div>
-                                <Button className="glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">
-                                    <FileText className="mr-2 h-4 w-4" /> File a Claim
-                                </Button>
+                                <form onSubmit={handleClaim}>
+                                    <Button type="submit" className="glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">
+                                        <FileText className="mr-2 h-4 w-4" /> File a Claim
+                                    </Button>
+                                </form>
                             </div>
                             <div>
-                                <Label>Coverage Progress</Label>
+                                <Label>Coverage Progress (from getter)</Label>
                                 <Progress value={85} className="h-2 mt-1"/>
                                 <p className="text-xs text-muted-foreground mt-1">Next premium due in 15 days.</p>
                             </div>
@@ -154,14 +192,14 @@ export default function DeFarmPage() {
                            <div className="flex items-center justify-between p-3 bg-secondary rounded-lg">
                                 <div className="flex items-center gap-3">
                                     <DollarSign className="text-accent"/>
-                                    <span className="font-medium">Total Revenue</span>
+                                    <span className="font-medium">Total Revenue (getter)</span>
                                 </div>
                                 <span className="font-bold text-lg">1,234 ETH</span>
                            </div>
                            <div className="flex items-center justify-between p-3 bg-secondary rounded-lg">
                                 <div className="flex items-center gap-3">
                                     <Package className="text-accent"/>
-                                    <span className="font-medium">Orders Fulfilled</span>
+                                    <span className="font-medium">Orders Fulfilled (getter)</span>
                                 </div>
                                 <span className="font-bold text-lg">42</span>
                            </div>
@@ -172,42 +210,44 @@ export default function DeFarmPage() {
                             <CardTitle>Add New Product</CardTitle>
                             <CardDescription>List and tokenize a new product on the marketplace.</CardDescription>
                         </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div>
-                                <Label htmlFor="productName">Product Name</Label>
-                                <Input id="productName" placeholder="e.g., Organic Corn" className="bg-background" />
-                            </div>
-                            <div>
-                                <Label htmlFor="category">Category</Label>
-                                <Select>
-                                    <SelectTrigger id="category" className="bg-background">
-                                        <SelectValue placeholder="Select a category" />
-                                    </SelectTrigger>
-                                    <SelectContent className="bg-card">
-                                        <SelectItem value="grains">Grains</SelectItem>
-                                        <SelectItem value="dairy">Dairy</SelectItem>
-                                        <SelectItem value="fruits">Fruits</SelectItem>
-                                        <SelectItem value="vegetables">Vegetables</SelectItem>
-                                        <SelectItem value="livestock">Livestock</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                            </div>
-                            <div>
-                                <Label htmlFor="quantity">Quantity</Label>
-                                <Input id="quantity" placeholder="e.g., 500kg" className="bg-background"/>
-                            </div>
-                             <div>
-                                <Label htmlFor="price">Price (ETH)</Label>
-                                <Input id="price" placeholder="e.g., 1.2 ETH/kg" className="bg-background" />
-                            </div>
-                            <div>
-                                <Label htmlFor="delivery">Delivery Options</Label>
-                                <Input id="delivery" placeholder="e.g., 24h" className="bg-background" />
-                            </div>
-                            <Button className="w-full glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">
-                                <PlusCircle className="mr-2 h-4 w-4" /> Add & Tokenize Product
-                            </Button>
-                        </CardContent>
+                         <form onSubmit={handleAddProduct}>
+                            <CardContent className="space-y-4">
+                                <div>
+                                    <Label htmlFor="productName">Product Name</Label>
+                                    <Input id="productName" placeholder="e.g., Organic Corn" className="bg-background" />
+                                </div>
+                                <div>
+                                    <Label htmlFor="category">Category</Label>
+                                    <Select>
+                                        <SelectTrigger id="category" className="bg-background">
+                                            <SelectValue placeholder="Select a category" />
+                                        </SelectTrigger>
+                                        <SelectContent className="bg-card">
+                                            <SelectItem value="grains">Grains</SelectItem>
+                                            <SelectItem value="dairy">Dairy</SelectItem>
+                                            <SelectItem value="fruits">Fruits</SelectItem>
+                                            <SelectItem value="vegetables">Vegetables</SelectItem>
+                                            <SelectItem value="livestock">Livestock</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                                <div>
+                                    <Label htmlFor="quantity">Quantity</Label>
+                                    <Input id="quantity" placeholder="e.g., 500kg" className="bg-background"/>
+                                </div>
+                                 <div>
+                                    <Label htmlFor="price">Price (ETH)</Label>
+                                    <Input id="price" type="number" step="0.01" placeholder="e.g., 1.2 ETH/kg" className="bg-background" />
+                                </div>
+                                <div>
+                                    <Label htmlFor="delivery">Delivery Options</Label>
+                                    <Input id="delivery" placeholder="e.g., 24h" className="bg-background" />
+                                </div>
+                                <Button type="submit" className="w-full glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">
+                                    <PlusCircle className="mr-2 h-4 w-4" /> Add & Tokenize Product
+                                </Button>
+                            </CardContent>
+                        </form>
                     </Card>
                 </div>
             </div>

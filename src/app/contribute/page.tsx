@@ -13,9 +13,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 
 const benefits = [
-    "Increased token rewards",
+    "Increased token rewards (from getter)",
     "Access to exclusive marketplace items",
-    "Governance voting rights",
+    "Governance voting rights (from getter)",
     "Priority support",
     "Early access to new features",
     "Direct line to development team"
@@ -56,7 +56,7 @@ export default function ContributePage() {
                     <Card className="bg-card/50 border-border/50 shadow-lg mt-8">
                         <CardHeader>
                             <CardTitle className="text-2xl text-accent">Contributor Benefits</CardTitle>
-                             <CardDescription>Benefits unlocked at higher tiers.</CardDescription>
+                             <CardDescription>Benefits unlocked at higher tiers, sourced from getters.</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <ul className="space-y-3">
