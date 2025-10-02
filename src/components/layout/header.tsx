@@ -11,6 +11,8 @@ import {
   Sheet,
   SheetContent,
   SheetTrigger,
+  SheetTitle,
+  SheetHeader,
 } from "@/components/ui/sheet";
 
 const navLinks = [
@@ -72,6 +74,9 @@ export function Header() {
                 side="left"
                 className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
               >
+                <SheetHeader>
+                  <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
+                </SheetHeader>
                 <div className="flex flex-col p-4 gap-4">
                   {navLinks.map((link) => (
                     <Link
