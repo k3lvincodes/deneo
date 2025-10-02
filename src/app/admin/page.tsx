@@ -7,8 +7,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Bell, Eye, UserPlus, DollarSign } from "lucide-react";
+import { Bell, Eye, UserPlus, DollarSign, CheckCircle, ShieldX } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
 
 const homePickOrders = [
     { buyer: "0xAb...c1d2", product: "Organic Corn", destination: "123 Green St, Terra" },
@@ -16,6 +17,18 @@ const homePickOrders = [
 ];
 
 const states = ["Abuja", "Lagos", "Kano", "Oyo", "Rivers", "Kaduna", "Sokoto"];
+
+const inspectionRequests = [
+    { id: "INSP-001", type: "Large Livestock", location: "Green Valley Farms", status: "Pending"},
+    { id: "INSP-002", type: "Poultry Birds", location: "Sunrise Hatchery", status: "Pending"},
+    { id: "INSP-003", type: "Fishery/Aqua", location: "Ocean's Bounty", status: "Confirmed"},
+];
+
+const insuredUsers = [
+    { id: "USR-A1", name: "Farmer John", policy: "LLS-Monthly", status: "Active"},
+    { id: "USR-B2", name: "Aqua Farms Inc.", policy: "FA-Monthly", status: "Active"},
+    { id: "USR-C3", name: "Chicken Coop Co.", policy: "PB-Monthly", status: "Expired"},
+]
 
 export default function AdminPage() {
     const { toast } = useToast();
@@ -53,6 +66,20 @@ export default function AdminPage() {
         });
     }
 
+    const handleConfirmInspection = (id: string) => {
+         toast({
+            title: "Inspection Confirmed",
+            description: `Inspection ${id} has been confirmed. The user can now register their animals.`,
+        });
+    }
+
+    const handleResetInsurance = (userId: string) => {
+        toast({
+            title: "Insurance Reset",
+            description: `Insurance for user ${userId} has been reset.`,
+        });
+    }
+
     return (
         <div className="container mx-auto py-12">
             <div className="text-center mb-12">
@@ -66,6 +93,7 @@ export default function AdminPage() {
                         <TabsTrigger value="general">General</TabsTrigger>
                         <TabsTrigger value="roles">Role Management</TabsTrigger>
                         <TabsTrigger value="payroll">Payroll</TabsTrigger>
+                        <TabsTrigger value="insurance">Insurance Admin</TabsTrigger>
                     </TabsList>
                 </div>
 
@@ -211,6 +239,82 @@ export default function AdminPage() {
                             <CardContent>
                                 <p className="text-muted-foreground mb-4">Click to execute batch payment for all registered PFPC members.</p>
                                 <Button onClick={handlePayWages('pfpc')} className="w-full glow-on-hover">Pay All PFPCs</Button>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </TabsContent>
+                <TabsContent value="insurance">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <Card className="bg-card/50 border-border/50 shadow-lg">
+                            <CardHeader>
+                                <CardTitle>Inspection Request Queue</CardTitle>
+                                <CardDescription>Confirm pending inspection requests.</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <Table>
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead>Request ID</TableHead>
+                                            <TableHead>Type</TableHead>
+                                            <TableHead>Location</TableHead>
+                                            <TableHead>Action</TableHead>
+                                        </TableRow>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {inspectionRequests.map(req => (
+                                            <TableRow key={req.id}>
+                                                <TableCell className="font-mono">{req.id}</TableCell>
+                                                <TableCell>{req.type}</TableCell>
+                                                <TableCell>{req.location}</TableCell>
+                                                <TableCell>
+                                                    {req.status === 'Pending' ? (
+                                                         <Button size="sm" onClick={() => handleConfirmInspection(req.id)}>
+                                                            <CheckCircle className="mr-2 h-4 w-4" /> Confirm
+                                                        </Button>
+                                                    ) : (
+                                                        <Badge variant="outline">Confirmed</Badge>
+                                                    )}
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </CardContent>
+                        </Card>
+                         <Card className="bg-card/50 border-border/50 shadow-lg">
+                            <CardHeader>
+                                <CardTitle>Reset Monthly Insurance</CardTitle>
+                                <CardDescription>Reset insurance status for users.</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <Table>
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead>User ID</TableHead>
+                                            <TableHead>Policy</TableHead>
+                                            <TableHead>Status</TableHead>
+                                            <TableHead>Action</TableHead>
+                                        </TableRow>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {insuredUsers.map(user => (
+                                            <TableRow key={user.id}>
+                                                <TableCell className="font-mono">{user.id}</TableCell>
+                                                <TableCell>{user.policy}</TableCell>
+                                                <TableCell>
+                                                    <Badge variant={user.status === 'Active' ? 'default' : 'destructive'} className={user.status === 'Active' ? 'bg-accent text-accent-foreground' : ''}>
+                                                        {user.status}
+                                                    </Badge>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Button variant="destructive" size="sm" onClick={() => handleResetInsurance(user.id)}>
+                                                        <ShieldX className="mr-2 h-4 w-4" /> Reset
+                                                    </Button>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
                             </CardContent>
                         </Card>
                     </div>

@@ -18,6 +18,7 @@ import {
 const navLinks = [
   { href: "/defarm", label: "DeFarm" },
   { href: "/animal-welfare", label: "Animal Welfare" },
+  { href: "/insurance", label: "Insurance" },
   { href: "/circular-income", label: "Circular Income" },
   { href: "/roles", label: "Roles" },
   { href: "/admin", label: "Admin" },
