@@ -3,7 +3,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 import { Logo } from "@/components/shared/logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -15,7 +14,6 @@ import {
   SheetTitle,
   SheetHeader,
 } from "@/components/ui/sheet";
-import { useToast } from "@/hooks/use-toast";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,6 +23,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { useWallet } from "../shared/wallet-provider";
 
 
 const navLinks = [
@@ -36,35 +35,7 @@ const navLinks = [
 
 export function Header() {
   const pathname = usePathname();
-  const { toast } = useToast();
-  const [isConnected, setIsConnected] = useState(false);
-  const [userAddress, setUserAddress] = useState("");
-
-  const handleConnect = () => {
-    // This is a mock connection handler
-    toast({
-        title: "Connecting to wallet...",
-        description: "Please approve the connection in your wallet provider.",
-    });
-
-    setTimeout(() => {
-        const mockAddress = "0x" + Array(40).fill(0).map(() => Math.floor(Math.random() * 16).toString(16)).join('');
-        setUserAddress(mockAddress);
-        setIsConnected(true);
-        toast({
-            title: "Wallet Connected",
-            description: `Address: ${mockAddress.substring(0, 6)}...${mockAddress.substring(mockAddress.length - 4)}`,
-        });
-    }, 2000);
-  };
-
-  const handleDisconnect = () => {
-      setIsConnected(false);
-      setUserAddress("");
-      toast({
-          title: "Wallet Disconnected",
-      });
-  }
+  const { isConnected, userAddress, handleConnect, handleDisconnect } = useWallet();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -186,6 +157,8 @@ export function Header() {
                     )}
                   <Button
                     asChild
+                    size="lg" 
+                    variant="secondary"
                     className="w-full glow-on-hover"
                   >
                     <Link href="/contribute">Join as Contributor</Link>

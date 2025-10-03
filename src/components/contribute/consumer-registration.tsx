@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { useWallet } from "../shared/wallet-provider";
 
 interface ConsumerRegistrationProps {
     onRegister: () => void;
@@ -13,15 +14,21 @@ interface ConsumerRegistrationProps {
 
 export function ConsumerRegistration({ onRegister }: ConsumerRegistrationProps) {
     const { toast } = useToast();
+    const { handleConnect, isConnected } = useWallet();
     
     const handleConsumerSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // Mock registration
         const mockId = Math.floor(Math.random() * 100000);
         toast({
-        title: "Registration Successful!",
-        description: `Welcome! Your consumer ID is YFC_${mockId}.`,
+            title: "Registration Successful!",
+            description: `Welcome! Your consumer ID is YFC_${mockId}.`,
         });
+
+        if (!isConnected) {
+            handleConnect();
+        }
+        
         onRegister();
     };
 

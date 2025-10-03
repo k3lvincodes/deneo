@@ -3,7 +3,7 @@
 
 import { useState, useRef } from "react";
 import { CardContent, CardFooter } from "@/components/ui/card";
-import { Upload, Trash2, ImagePlus } from "lucide-react";
+import { Upload, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { useWallet } from "../shared/wallet-provider";
 
 interface ProviderRegistrationProps {
     onRegister: () => void;
@@ -18,6 +19,7 @@ interface ProviderRegistrationProps {
 
 export function ProviderRegistration({ onRegister }: ProviderRegistrationProps) {
     const { toast } = useToast();
+    const { handleConnect, isConnected } = useWallet();
     const [uploadedImage, setUploadedImage] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -51,6 +53,9 @@ export function ProviderRegistration({ onRegister }: ProviderRegistrationProps) 
         // On success, call the onRegister callback
         setTimeout(() => {
             toast({ title: "Registration Successful!", description: "Welcome to the DeNeo ecosystem." });
+            if (!isConnected) {
+                handleConnect();
+            }
             onRegister();
         }, 3000); // Simulate delay for wallet confirmation
     };
