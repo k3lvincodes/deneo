@@ -10,9 +10,9 @@ import { ShoppingCart, Menu, Wallet } from "lucide-react";
 import {
   Sheet,
   SheetContent,
+  SheetHeader,
   SheetTrigger,
   SheetTitle,
-  SheetHeader,
   SheetClose,
 } from "@/components/ui/sheet";
 import {
@@ -26,6 +26,7 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useWallet } from "../shared/wallet-provider";
 import { useState } from "react";
+import { Separator } from "../ui/separator";
 
 
 const navLinks = [
@@ -42,7 +43,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 items-center">
+      <div className="container mx-auto flex h-16 items-center px-[30px]">
         <div className="flex items-center justify-start flex-1">
           <Link href="/" className="flex items-center space-x-2">
             <Logo />
@@ -94,7 +95,7 @@ export function Header() {
                             <Avatar className="h-6 w-6">
                                 <AvatarFallback className="bg-secondary text-xs">0x</AvatarFallback>
                             </Avatar>
-                            <span>{`${userAddress.substring(0, 6)}...${userAddress.substring(userAddress.length - 4)}`}</span>
+                            <span className="text-xs">{`${userAddress.substring(0, 6)}...${userAddress.substring(userAddress.length - 4)}`}</span>
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="bg-card">
@@ -106,7 +107,7 @@ export function Header() {
                 </DropdownMenu>
             )}
            
-          <Button asChild size="lg" variant="secondary" className="glow-on-hover hidden lg:flex">
+          <Button asChild size="lg" variant="secondary" className="glow-on-hover hidden lg:flex text-xs h-9">
             <Link href="/contribute">{isRegistered ? "Contributor Portal" : "Join as Contributor"}</Link>
           </Button>
 
@@ -155,14 +156,20 @@ export function Header() {
                       Admin
                     </Link>
                    )}
+                  <Separator />
                   {!isConnected ? (
                         <Button onClick={() => {handleConnect(); setIsMobileMenuOpen(false);}} className="w-full glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">
                            <Wallet className="mr-2" /> Connect Wallet
                         </Button>
                     ) : (
+                      <>
                         <Button variant="outline" disabled>
                             {`${userAddress.substring(0, 6)}...${userAddress.substring(userAddress.length - 4)}`}
                         </Button>
+                        <Button onClick={() => {handleDisconnect(); setIsMobileMenuOpen(false);}} variant="secondary" className="w-full">
+                           Disconnect
+                        </Button>
+                      </>
                     )}
                    <SheetClose asChild>
                     <Button

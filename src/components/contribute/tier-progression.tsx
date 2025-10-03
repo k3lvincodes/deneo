@@ -1,5 +1,12 @@
 
-import { ChevronRight } from "lucide-react";
+"use client";
+
+import { Card, CardContent } from "@/components/ui/card"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel"
 import { cn } from "@/lib/utils";
 import React from "react";
 
@@ -12,24 +19,29 @@ const tiers = [
 
 export function TierProgression() {
   return (
-    <div className="flex items-center justify-between p-2 sm:p-4 bg-secondary rounded-lg">
-        {tiers.map((tier, index) => (
-            <React.Fragment key={tier.name}>
-                <div className={cn(
-                    "flex-1 text-center p-2 sm:p-4 rounded-md transition-all duration-300",
-                    tier.active ? "bg-accent text-accent-foreground" : "bg-muted/50 text-muted-foreground"
-                )}>
-                    <p className="font-bold text-sm sm:text-lg">{tier.name}</p>
-                    <p className="text-xs">{tier.active ? "Unlocked" : "Locked"}</p>
+    <div className="p-2 sm:p-4 bg-secondary rounded-lg">
+        <Carousel
+        opts={{
+            align: "start",
+        }}
+        className="w-full"
+        >
+        <CarouselContent>
+            {tiers.map((tier, index) => (
+            <CarouselItem key={index} className="basis-1/2 sm:basis-1/3">
+                <div className="p-1">
+                    <div className={cn(
+                        "flex-1 text-center p-4 rounded-md transition-all duration-300 h-full flex flex-col justify-center",
+                        tier.active ? "bg-accent text-accent-foreground" : "bg-muted/50 text-muted-foreground"
+                    )}>
+                        <p className="font-bold text-lg">{tier.name}</p>
+                        <p className="text-xs">{tier.active ? "Unlocked" : "Locked"}</p>
+                    </div>
                 </div>
-                {index < tiers.length - 1 && (
-                    <ChevronRight className={cn(
-                        "h-6 w-6 sm:h-8 sm:w-8 mx-1 sm:mx-2 shrink-0",
-                        tiers[index+1].active ? "text-accent" : "text-muted-foreground"
-                    )} />
-                )}
-            </React.Fragment>
-        ))}
+            </CarouselItem>
+            ))}
+        </CarouselContent>
+        </Carousel>
     </div>
   );
 }
