@@ -32,9 +32,8 @@ export default function GalleryPage() {
     const [nftData, setNftData] = useState<NftData | null>(null);
     const [loading, setLoading] = useState(false);
 
-    const handleFetchToken = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!tokenId) {
+    const fetchTokenData = (id: string) => {
+        if (!id) {
             toast({
                 variant: "destructive",
                 title: "Token ID Required",
@@ -47,17 +46,17 @@ export default function GalleryPage() {
         setNftData(null);
         toast({
             title: "Fetching NFT Data...",
-            description: `Searching for Token ID: ${tokenId}`,
+            description: `Searching for Token ID: ${id}`,
         });
 
         // Simulate fetching tokenURI and then the metadata
         setTimeout(() => {
             const mockData: NftData = {
-                tokenId,
-                tokenUri: `https://api.deneo.com/nft/${tokenId}`,
-                name: `AWI Policy #${tokenId}`,
+                tokenId: id,
+                tokenUri: `https://api.deneo.com/nft/${id}`,
+                name: `AWI Policy #${id}`,
                 description: "This NFT represents a decentralized animal welfare insurance policy, providing on-chain proof of coverage for livestock. It is non-transferable and can only be minted or burned by the system.",
-                imageUrl: `https://picsum.photos/seed/${tokenId}/500`,
+                imageUrl: `https://picsum.photos/seed/${id}/500`,
                 attributes: [
                     { trait_type: "Animal Type", value: "Large Livestock" },
                     { trait_type: "Coverage", value: "Monthly" },
@@ -68,9 +67,20 @@ export default function GalleryPage() {
             setLoading(false);
             toast({
                 title: "NFT Found!",
-                description: `Displaying metadata for Token ID: ${tokenId}`,
+                description: `Displaying metadata for Token ID: ${id}`,
             });
         }, 2000);
+    };
+    
+    const handleFetchToken = (e: React.FormEvent) => {
+        e.preventDefault();
+        fetchTokenData(tokenId);
+    };
+
+    const handleViewDetailsClick = (id: string) => {
+        setTokenId(id);
+        fetchTokenData(id);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     return (
@@ -130,8 +140,13 @@ export default function GalleryPage() {
                                             ))}
                                         </div>
                                         <div className="font-mono text-xs space-y-2 pt-2">
-                                            <div className="flex items-center gap-2"><strong className="text-muted-foreground">Token ID:</strong> <Badge variant="outline">{nftData.tokenId}</Badge></div>
-                                            <p><strong className="text-muted-foreground">Token URI:</strong> <a href={nftData.tokenUri} target="_blank" className="text-accent hover:underline break-all">{nftData.tokenUri}</a></p>
+                                            <div className="flex items-center gap-2">
+                                                <strong className="text-muted-foreground">Token ID:</strong>
+                                                <Badge variant="outline">{nftData.tokenId}</Badge>
+                                            </div>
+                                            <div>
+                                                <strong className="text-muted-foreground">Token URI:</strong> <a href={nftData.tokenUri} target="_blank" className="text-accent hover:underline break-all">{nftData.tokenUri}</a>
+                                            </div>
                                         </div>
                                     </CardContent>
                                     <div className="p-0 pt-4">
@@ -164,7 +179,7 @@ export default function GalleryPage() {
                            <div className="p-4">
                                 <h3 className="font-semibold text-foreground">{nft.name}</h3>
                                 <p className="text-sm text-muted-foreground">Token ID: {nft.tokenId}</p>
-                                <Button size="sm" className="w-full mt-4" onClick={() => { setTokenId(nft.tokenId); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>View Details</Button>
+                                <Button size="sm" className="w-full mt-4" onClick={() => handleViewDetailsClick(nft.tokenId)}>View Details</Button>
                            </div>
                         </Card>
                     ))}
@@ -172,4 +187,5 @@ export default function GalleryPage() {
             </div>
         </div>
     );
-}
+
+    
