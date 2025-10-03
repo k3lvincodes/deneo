@@ -56,7 +56,7 @@ export default function GalleryPage() {
                 tokenId,
                 tokenUri: `https://api.deneo.com/nft/${tokenId}`,
                 name: `AWI Policy #${tokenId}`,
-                description: "This NFT represents a decentralized animal welfare insurance policy, providing on-chain proof of coverage for livestock.",
+                description: "This NFT represents a decentralized animal welfare insurance policy, providing on-chain proof of coverage for livestock. It is non-transferable and can only be minted or burned by the system.",
                 imageUrl: `https://picsum.photos/seed/${tokenId}/500`,
                 attributes: [
                     { trait_type: "Animal Type", value: "Large Livestock" },

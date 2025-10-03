@@ -153,7 +153,7 @@ export default function RolesPage() {
                          <Card className="bg-card/50 border-border/50 shadow-lg">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2 text-lg"><DollarSign /> Deposit Funds</CardTitle>
-                                <CardDescription>Make a general deposit to the DeNeo ecosystem fund.</CardDescription>
+                                <CardDescription>Make a general deposit to the DeNeo ecosystem fund. Direct ETH transfers to the contract address are also accepted and logged as deposits.</CardDescription>
                             </CardHeader>
                             <form onSubmit={handleDeposit}>
                                 <CardContent>
