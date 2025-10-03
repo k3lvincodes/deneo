@@ -4,7 +4,7 @@ import { Twitter, Linkedin, Gitlab } from "lucide-react";
 export function Footer() {
   return (
     <footer className="border-t border-border/40">
-      <div className="container mx-auto flex flex-col items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0">
+      <div className="container mx-auto flex flex-col items-center justify-between gap-4 py-10 px-5 md:h-24 md:flex-row md:py-0">
         <div className="flex flex-1 items-center justify-start">
             <Logo />
         </div>
