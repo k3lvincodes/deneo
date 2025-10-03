@@ -34,6 +34,7 @@ const navLinks = [
   { href: "/animal-welfare", label: "Animal Welfare" },
   { href: "/circular-income", label: "Circular Income" },
   { href: "/roles", label: "Roles" },
+  { href: "/gallery", label: "Gallery" },
 ];
 
 export function Header() {
