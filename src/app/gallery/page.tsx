@@ -130,13 +130,13 @@ export default function GalleryPage() {
                                             ))}
                                         </div>
                                         <div className="font-mono text-xs space-y-2 pt-2">
-                                            <p><strong className="text-muted-foreground">Token ID:</strong> <Badge variant="outline">{nftData.tokenId}</Badge></p>
+                                            <div className="flex items-center gap-2"><strong className="text-muted-foreground">Token ID:</strong> <Badge variant="outline">{nftData.tokenId}</Badge></div>
                                             <p><strong className="text-muted-foreground">Token URI:</strong> <a href={nftData.tokenUri} target="_blank" className="text-accent hover:underline break-all">{nftData.tokenUri}</a></p>
                                         </div>
                                     </CardContent>
                                     <div className="p-0 pt-4">
-                                        <Button variant="outline" className="w-full">
-                                            <ShieldCheck className="mr-2" /> View On-Chain
+                                        <Button variant="outline" className="w-full" disabled>
+                                            <ShieldCheck className="mr-2" /> Non-Transferable
                                         </Button>
                                     </div>
                                 </div>
