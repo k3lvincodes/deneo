@@ -1,13 +1,14 @@
 
 "use client";
 
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Bell, Eye, UserPlus, DollarSign, CheckCircle, ShieldX } from "lucide-react";
+import { Bell, Eye, UserPlus, DollarSign, CheckCircle, ShieldX, Loader2 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 
@@ -32,59 +33,60 @@ const insuredUsers = [
 
 export default function AdminPage() {
     const { toast } = useToast();
+    const [loading, setLoading] = useState<Record<string, boolean>>({});
+
+    const handleAction = async (key: string, actionFn: () => Promise<any>, successTitle: string, successDescription: string) => {
+        setLoading(prev => ({...prev, [key]: true}));
+        try {
+            await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate async action
+            toast({
+                title: successTitle,
+                description: successDescription,
+            });
+        } catch (error: any) {
+             toast({
+                variant: "destructive",
+                title: "Action Failed",
+                description: error.message || "An unexpected error occurred.",
+            });
+        } finally {
+            setLoading(prev => ({...prev, [key]: false}));
+        }
+    };
 
     const handleNotify = () => {
-        toast({
-            title: "Admin Notified",
-            description: "A notification has been sent to view home pick orders.",
-        });
+        handleAction('notify', async () => {}, "Admin Notified", "A notification has been sent to view home pick orders.");
     };
 
     const handleUpdateLocations = (e: React.FormEvent) => {
         e.preventDefault();
-        toast({
-            title: "Locations Updated",
-            description: "State pickup locations have been successfully updated on-chain.",
-        });
+        handleAction('updateLocations', async () => {}, "Locations Updated", "State pickup locations have been successfully updated on-chain.");
     };
     
     const handleRegisterRole = (role: string) => (e: React.FormEvent) => {
         e.preventDefault();
         const form = e.target as HTMLFormElement;
         const nameInput = form.elements.namedItem(`${role}-name`) as HTMLInputElement;
-        
-        toast({
-            title: `${role.toUpperCase()} Registered`,
-            description: `${nameInput.value} has been registered as ${role.toUpperCase()}.`,
-        });
+        handleAction(`register-${role}`, async () => {}, `${role.toUpperCase()} Registered`, `${nameInput.value} has been registered as ${role.toUpperCase()}.`);
     };
     
     const handlePayWages = (role: string) => () => {
-        toast({
-            title: `Paying ${role.toUpperCase()} Wages`,
-            description: `A transaction has been initiated to pay all ${role.toUpperCase()} members.`,
-        });
+        handleAction(`pay-${role}`, async () => {}, `Paying ${role.toUpperCase()} Wages`, `A transaction has been initiated to pay all ${role.toUpperCase()} members.`);
     }
 
     const handleConfirmInspection = (id: string) => {
-         toast({
-            title: "Inspection Confirmed",
-            description: `Inspection ${id} has been confirmed. The user can now register their animals.`,
-        });
+         handleAction(`confirm-${id}`, async () => {}, "Inspection Confirmed", `Inspection ${id} has been confirmed. The user can now register their animals.`);
     }
 
     const handleResetInsurance = (userId: string) => {
-        toast({
-            title: "Insurance Reset",
-            description: `Insurance for user ${userId} has been reset.`,
-        });
+        handleAction(`reset-${userId}`, async () => {}, "Insurance Reset", `Insurance for user ${userId} has been reset.`);
     }
 
     return (
         <div className="container mx-auto py-12">
             <div className="text-center mb-12">
                 <h1 className="font-headline text-4xl font-bold">Admin Panel</h1>
-                <p className="mt-2 text-lg text-muted-foreground">Manage ecosystem settings, roles, and orders.</p>
+                <p className="mt-2 text-lg text-muted-foreground">Manage ecosystem settings, roles, and orders. (Owner-only access)</p>
             </div>
 
             <Tabs defaultValue="general">
@@ -107,8 +109,8 @@ export default function AdminPage() {
                                 </CardHeader>
                                 <CardContent>
                                     <div className="flex gap-4 mb-6">
-                                        <Button onClick={handleNotify} className="flex-1">
-                                            <Bell className="mr-2" /> Notify Admin to View
+                                        <Button onClick={handleNotify} className="flex-1" disabled={loading['notify']}>
+                                            {loading['notify'] ? <Loader2 className="mr-2 animate-spin" /> : <Bell className="mr-2" />} Notify Admin to View
                                         </Button>
                                         <Button variant="outline" className="flex-1">
                                             <Eye className="mr-2" /> View Orders
@@ -154,7 +156,8 @@ export default function AdminPage() {
                                                 />
                                             </div>
                                         ))}
-                                        <Button type="submit" className="w-full glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">
+                                        <Button type="submit" className="w-full glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90" disabled={loading['updateLocations']}>
+                                            {loading['updateLocations'] && <Loader2 className="mr-2 animate-spin" />}
                                             Update Locations
                                         </Button>
                                     </form>
@@ -176,7 +179,10 @@ export default function AdminPage() {
                                     <Input id="sfpc-name" name="sfpc-name" placeholder="Enter SFPC name" className="bg-background mt-2" />
                                 </CardContent>
                                 <CardFooter>
-                                    <Button type="submit" className="w-full">Register SFPC</Button>
+                                    <Button type="submit" className="w-full" disabled={loading['register-sfpc']}>
+                                        {loading['register-sfpc'] && <Loader2 className="mr-2 animate-spin" />}
+                                        Register SFPC
+                                    </Button>
                                 </CardFooter>
                             </form>
                         </Card>
@@ -190,7 +196,10 @@ export default function AdminPage() {
                                     <Input id="fpc-name" name="fpc-name" placeholder="Enter FPC name" className="bg-background mt-2" />
                                 </CardContent>
                                 <CardFooter>
-                                    <Button type="submit" className="w-full">Register FPC</Button>
+                                    <Button type="submit" className="w-full" disabled={loading['register-fpc']}>
+                                        {loading['register-fpc'] && <Loader2 className="mr-2 animate-spin" />}
+                                        Register FPC
+                                    </Button>
                                 </CardFooter>
                             </form>
                         </Card>
@@ -205,7 +214,10 @@ export default function AdminPage() {
                                     <Input id="pfpc-name" name="pfpc-name" placeholder="Enter PFPC name" className="bg-background mt-2" />
                                 </CardContent>
                                 <CardFooter>
-                                    <Button type="submit" className="w-full">Register PFPC (Payable)</Button>
+                                    <Button type="submit" className="w-full" disabled={loading['register-pfpc']}>
+                                        {loading['register-pfpc'] && <Loader2 className="mr-2 animate-spin" />}
+                                        Register PFPC (Payable)
+                                    </Button>
                                 </CardFooter>
                             </form>
                         </Card>
@@ -220,7 +232,10 @@ export default function AdminPage() {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-muted-foreground mb-4">Click to execute batch payment for all registered SFPC members.</p>
-                                <Button onClick={handlePayWages('sfpc')} className="w-full glow-on-hover">Pay All SFPCs</Button>
+                                <Button onClick={handlePayWages('sfpc')} className="w-full glow-on-hover" disabled={loading['pay-sfpc']}>
+                                    {loading['pay-sfpc'] && <Loader2 className="mr-2 animate-spin" />}
+                                    Pay All SFPCs
+                                </Button>
                             </CardContent>
                         </Card>
                         <Card className="bg-card/50 border-border/50 shadow-lg text-center">
@@ -229,7 +244,10 @@ export default function AdminPage() {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-muted-foreground mb-4">Click to execute batch payment for all registered FPC members.</p>
-                                <Button onClick={handlePayWages('fpc')} className="w-full glow-on-hover">Pay All FPCs</Button>
+                                <Button onClick={handlePayWages('fpc')} className="w-full glow-on-hover" disabled={loading['pay-fpc']}>
+                                    {loading['pay-fpc'] && <Loader2 className="mr-2 animate-spin" />}
+                                    Pay All FPCs
+                                </Button>
                             </CardContent>
                         </Card>
                         <Card className="bg-card/50 border-border/50 shadow-lg text-center">
@@ -238,7 +256,10 @@ export default function AdminPage() {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-muted-foreground mb-4">Click to execute batch payment for all registered PFPC members.</p>
-                                <Button onClick={handlePayWages('pfpc')} className="w-full glow-on-hover">Pay All PFPCs</Button>
+                                <Button onClick={handlePayWages('pfpc')} className="w-full glow-on-hover" disabled={loading['pay-pfpc']}>
+                                    {loading['pay-pfpc'] && <Loader2 className="mr-2 animate-spin" />}
+                                    Pay All PFPCs
+                                </Button>
                             </CardContent>
                         </Card>
                     </div>
@@ -268,8 +289,8 @@ export default function AdminPage() {
                                                 <TableCell>{req.location}</TableCell>
                                                 <TableCell>
                                                     {req.status === 'Pending' ? (
-                                                         <Button size="sm" onClick={() => handleConfirmInspection(req.id)}>
-                                                            <CheckCircle className="mr-2 h-4 w-4" /> Confirm
+                                                         <Button size="sm" onClick={() => handleConfirmInspection(req.id)} disabled={loading[`confirm-${req.id}`]}>
+                                                            {loading[`confirm-${req.id}`] ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <CheckCircle className="mr-2 h-4 w-4" />} Confirm
                                                         </Button>
                                                     ) : (
                                                         <Badge variant="outline">Confirmed</Badge>
@@ -307,8 +328,8 @@ export default function AdminPage() {
                                                     </Badge>
                                                 </TableCell>
                                                 <TableCell>
-                                                    <Button variant="destructive" size="sm" onClick={() => handleResetInsurance(user.id)}>
-                                                        <ShieldX className="mr-2 h-4 w-4" /> Reset
+                                                    <Button variant="destructive" size="sm" onClick={() => handleResetInsurance(user.id)} disabled={loading[`reset-${user.id}`]}>
+                                                        {loading[`reset-${user.id}`] ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <ShieldX className="mr-2 h-4 w-4" />} Reset
                                                     </Button>
                                                 </TableCell>
                                             </TableRow>
