@@ -55,15 +55,15 @@ export function ConsumerDashboard() {
         <div className="space-y-8">
             <Card className="bg-card/50 border-border/50 shadow-lg">
                 <CardHeader>
-                    <CardTitle className="text-2xl text-accent">Request a Product</CardTitle>
+                    <CardTitle className="text-xl md:text-2xl text-accent">Request a Product</CardTitle>
                     <CardDescription>Select a product from the marketplace to request it.</CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="overflow-x-auto">
                     <Table>
                         <TableHeader>
                             <TableRow>
                                 <TableHead>Product</TableHead>
-                                <TableHead>Price (ETH/kg)</TableHead>
+                                <TableHead>Price</TableHead>
                                 <TableHead className="text-right">Action</TableHead>
                             </TableRow>
                         </TableHeader>
@@ -71,7 +71,7 @@ export function ConsumerDashboard() {
                             {products.map((product, index) => (
                                 <TableRow key={index}>
                                     <TableCell>{product.name}</TableCell>
-                                    <TableCell>{product.price.toFixed(2)}</TableCell>
+                                    <TableCell className="whitespace-nowrap">{product.price.toFixed(2)} ETH/kg</TableCell>
                                     <TableCell className="text-right">
                                          <Dialog>
                                             <DialogTrigger asChild>
@@ -96,7 +96,7 @@ export function ConsumerDashboard() {
                                                             <Label htmlFor="req-quantity">Quantity (kg)</Label>
                                                             <Input id="req-quantity" type="number" placeholder="e.g., 10" required min="1" className="bg-background"/>
                                                         </div>
-                                                        <div className="grid grid-cols-2 gap-4">
+                                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                             <div className="space-y-2">
                                                                 <Label htmlFor="req-contact1">Phone Number 1</Label>
                                                                 <Input id="req-contact1" type="tel" required className="bg-background" placeholder="+1234567890"/>
@@ -134,10 +134,10 @@ export function ConsumerDashboard() {
 
             <Card className="bg-card/50 border-border/50 shadow-lg">
                 <CardHeader>
-                    <CardTitle className="text-2xl text-accent">Your Orders</CardTitle>
+                    <CardTitle className="text-xl md:text-2xl text-accent">Your Orders</CardTitle>
                     <CardDescription>Track the status of your product requests.</CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="overflow-x-auto">
                     <Table>
                         <TableHeader>
                             <TableRow>

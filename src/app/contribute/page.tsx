@@ -37,16 +37,16 @@ export default function ContributePage() {
     };
 
     return (
-        <div className="container mx-auto py-12">
-            <div className="text-center mb-12">
-                <h1 className="font-headline text-4xl font-bold">Contributor Portal</h1>
-                <p className="mt-2 text-lg text-muted-foreground">Grow with the ecosystem and unlock new benefits.</p>
+        <div className="container mx-auto py-8 px-4 md:py-12">
+            <div className="text-center mb-8 md:mb-12">
+                <h1 className="font-headline text-3xl md:text-4xl font-bold">Contributor Portal</h1>
+                <p className="mt-2 text-md md:text-lg text-muted-foreground">Grow with the ecosystem and unlock new benefits.</p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
                 <div>
                     <Card className="bg-card/50 border-border/50 shadow-lg">
                         <CardHeader>
-                            <CardTitle className="text-2xl text-accent">Tier Progression</CardTitle>
+                            <CardTitle className="text-xl md:text-2xl text-accent">Tier Progression</CardTitle>
                             <CardDescription>Advance through tiers by contributing value to the network.</CardDescription>
                         </CardHeader>
                         <CardContent>
@@ -55,13 +55,13 @@ export default function ContributePage() {
                     </Card>
                     <Card className="bg-card/50 border-border/50 shadow-lg mt-8">
                         <CardHeader>
-                            <CardTitle className="text-2xl text-accent">Contributor Benefits</CardTitle>
+                            <CardTitle className="text-xl md:text-2xl text-accent">Contributor Benefits</CardTitle>
                              <CardDescription>Benefits unlocked at higher tiers, sourced from getters.</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <ul className="space-y-3">
                                 {benefits.map((benefit, index) => (
-                                    <li key={index} className="flex items-center">
+                                    <li key={index} className="flex items-center text-sm">
                                         <CheckCircle className="h-5 w-5 mr-3 text-accent" />
                                         <span>{benefit}</span>
                                     </li>
@@ -71,7 +71,7 @@ export default function ContributePage() {
                     </Card>
                      <Card className="bg-card/50 border-border/50 shadow-lg mt-8">
                         <CardHeader>
-                            <CardTitle className="text-2xl text-accent">Community Missions</CardTitle>
+                            <CardTitle className="text-xl md:text-2xl text-accent">Community Missions</CardTitle>
                              <CardDescription>Complete quests to earn rewards and build your reputation.</CardDescription>
                         </CardHeader>
                         <CardContent>
@@ -80,9 +80,9 @@ export default function ContributePage() {
                                     <div key={index} className="flex items-center justify-between p-3 bg-secondary rounded-lg">
                                         <div className="flex items-center gap-3">
                                             <mission.icon className="text-accent"/>
-                                            <span className="font-medium">{mission.title}</span>
+                                            <span className="font-medium text-sm">{mission.title}</span>
                                         </div>
-                                        <span className="font-bold text-sm text-accent">{mission.reward}</span>
+                                        <span className="font-bold text-xs text-accent">{mission.reward}</span>
                                 </div>
                                 ))}
                            </div>
@@ -93,7 +93,7 @@ export default function ContributePage() {
                     {userRole === 'unregistered' && (
                         <Card className="bg-card/50 border-border/50 shadow-lg">
                             <CardHeader>
-                                <CardTitle className="text-2xl text-accent">Become a Contributor</CardTitle>
+                                <CardTitle className="text-xl md:text-2xl text-accent">Become a Contributor</CardTitle>
                                 <CardDescription>Register as a provider or consumer to start your journey.</CardDescription>
                             </CardHeader>
                             <CardContent>

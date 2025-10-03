@@ -104,7 +104,7 @@ export default function AnimalWelfarePage() {
                 return (
                     <Card className="bg-card/50 border-border/50 shadow-lg">
                         <CardHeader>
-                            <CardTitle>Step 1: Request Inspection</CardTitle>
+                            <CardTitle className="text-xl">Step 1: Request Inspection</CardTitle>
                             <CardDescription>An admin must confirm your farm location before you can register animals.</CardDescription>
                         </CardHeader>
                         <form onSubmit={handleRequestInspection}>
@@ -122,7 +122,7 @@ export default function AnimalWelfarePage() {
                  return (
                     <Card className="bg-card/50 border-border/50 shadow-lg">
                         <CardHeader>
-                            <CardTitle>Step 2: Register Your Animals</CardTitle>
+                            <CardTitle className="text-xl">Step 2: Register Your Animals</CardTitle>
                             <CardDescription>Fill in the details for your {animalTypeLabels[activeTab]}. A registration fee applies.</CardDescription>
                         </CardHeader>
                         <form onSubmit={handleRegisterAnimals}>
@@ -171,23 +171,23 @@ export default function AnimalWelfarePage() {
                  return (
                     <Card className="bg-card/50 border-border/50 shadow-lg">
                         <CardHeader>
-                            <CardTitle>Step 3: Activate Insurance & Mint NFT</CardTitle>
+                            <CardTitle className="text-xl">Step 3: Activate Insurance & Mint NFT</CardTitle>
                             <CardDescription>Select the number of animals to insure. This will mint an NFT representing your policy.</CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-4 text-center">
                             {tokenId && tokenUri ? (
                                 <div className='p-4 bg-secondary rounded-lg'>
-                                    <h3 className="text-xl font-bold text-accent">Insurance Activated!</h3>
-                                    <Image src="https://picsum.photos/seed/nft/400/400" alt="Insurance NFT" width={200} height={200} className="rounded-lg mx-auto my-4 shadow-lg" data-ai-hint="abstract art" />
-                                    <p>Your policy is now active.</p>
-                                    <div className='mt-4 text-left space-y-2 font-mono text-sm'>
+                                    <h3 className="text-lg md:text-xl font-bold text-accent">Insurance Activated!</h3>
+                                    <Image src="https://picsum.photos/seed/nft/400/400" alt="Insurance NFT" width={150} height={150} className="rounded-lg mx-auto my-4 shadow-lg" data-ai-hint="abstract art" />
+                                    <p className="text-sm">Your policy is now active.</p>
+                                    <div className='mt-4 text-left space-y-2 font-mono text-xs'>
                                         <p><strong>Token ID:</strong> <Badge variant="outline">{tokenId}</Badge></p>
                                         <p><strong>Token URI:</strong> <a href={tokenUri} target="_blank" className="text-accent hover:underline break-all">{tokenUri}</a></p>
                                     </div>
                                     <Button className='mt-4 w-full' onClick={() => { setStage('request_inspection'); setTokenId(null); setTokenUri(null);}}>Start New Application</Button>
                                 </div>
                             ) : (
-                                <div className="flex flex-col md:flex-row gap-4 justify-center">
+                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                     <Button size="lg" className="flex-1" onClick={() => handleActivateInsurance(5)}>Insure 5 Animals</Button>
                                     <Button size="lg" className="flex-1" onClick={() => handleActivateInsurance(10)}>Insure 10 Animals</Button>
                                 </div>
@@ -199,16 +199,16 @@ export default function AnimalWelfarePage() {
     };
 
   return (
-    <div className="container mx-auto py-12">
-        <div className="text-center mb-12">
-            <h1 className="font-headline text-4xl font-bold">Animal Welfare</h1>
-            <p className="mt-2 text-lg text-muted-foreground">Transparent, on-chain protection for livestock and wildlife.</p>
+    <div className="container mx-auto py-8 px-4 md:py-12">
+        <div className="text-center mb-8 md:mb-12">
+            <h1 className="font-headline text-3xl md:text-4xl font-bold">Animal Welfare</h1>
+            <p className="mt-2 text-md md:text-lg text-muted-foreground">Transparent, on-chain protection for livestock and wildlife.</p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-1 space-y-8">
                  <Card className="bg-card/50 border-border/50 shadow-lg">
                     <CardHeader>
-                        <CardTitle className="text-2xl text-accent">Coverage Dashboard</CardTitle>
+                        <CardTitle className="text-xl md:text-2xl text-accent">Coverage Dashboard</CardTitle>
                         <CardDescription>Ecosystem-wide insurance metrics from getters.</CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -219,23 +219,23 @@ export default function AnimalWelfarePage() {
                            <div className="flex items-center justify-between p-3 bg-secondary rounded-lg">
                                 <div className="flex items-center gap-3">
                                     <PawPrint className="text-accent"/>
-                                    <span className="font-medium">Animals Insured</span>
+                                    <span className="font-medium text-sm">Animals Insured</span>
                                 </div>
-                                <span className="font-bold text-lg">14,302</span>
+                                <span className="font-bold text-md md:text-lg">14,302</span>
                            </div>
                            <div className="flex items-center justify-between p-3 bg-secondary rounded-lg">
                                 <div className="flex items-center gap-3">
                                     <ShieldCheck className="text-accent"/>
-                                    <span className="font-medium">Welfare Actions</span>
+                                    <span className="font-medium text-sm">Welfare Actions</span>
                                 </div>
-                                <span className="font-bold text-lg">789</span>
+                                <span className="font-bold text-md md:text-lg">789</span>
                            </div>
                         </div>
                     </CardContent>
                 </Card>
                 <Card className="bg-card/50 border-border/50 shadow-lg">
                     <CardHeader>
-                        <CardTitle className="text-xl text-accent flex items-center gap-2"><Siren/> Report Emergency</CardTitle>
+                        <CardTitle className="text-lg md:text-xl text-accent flex items-center gap-2"><Siren/> Report Emergency</CardTitle>
                         <CardDescription>Instantly report animal threats, diseases, or hazards.</CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -293,7 +293,7 @@ export default function AnimalWelfarePage() {
             <div className="lg:col-span-2">
                 <Card className="bg-card/50 border-border/50 shadow-lg h-full">
                     <CardHeader>
-                        <CardTitle className="text-2xl text-accent">Animal Health Ledger</CardTitle>
+                        <CardTitle className="text-xl md:text-2xl text-accent">Animal Health Ledger</CardTitle>
                         <CardDescription>Live feed of welfare activities recorded on-chain.</CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -303,13 +303,13 @@ export default function AnimalWelfarePage() {
             </div>
         </div>
 
-        <div className="mt-16">
-            <div className="text-center mb-12">
-                <h2 className="font-headline text-3xl font-bold">Insurance Application</h2>
-                <p className="mt-2 text-lg text-muted-foreground">Secure on-chain insurance for your valuable animals.</p>
+        <div className="mt-12 md:mt-16">
+            <div className="text-center mb-8 md:mb-12">
+                <h2 className="font-headline text-2xl md:text-3xl font-bold">Insurance Application</h2>
+                <p className="mt-2 text-md md:text-lg text-muted-foreground">Secure on-chain insurance for your valuable animals.</p>
             </div>
              <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as AnimalType)} className="w-full">
-                <TabsList className="grid w-full grid-cols-4 bg-card/50 border border-border mb-8">
+                <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 bg-card/50 border border-border mb-8 h-auto">
                     <TabsTrigger value="lls">Large Livestock</TabsTrigger>
                     <TabsTrigger value="sls">Small Livestock</TabsTrigger>
                     <TabsTrigger value="pb">Poultry Birds</TabsTrigger>

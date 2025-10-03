@@ -30,7 +30,7 @@ export function ProviderDashboard() {
     return (
         <Card className="bg-card/50 border-border/50 shadow-lg">
             <CardHeader>
-                <CardTitle className="text-2xl text-accent">Provider Dashboard</CardTitle>
+                <CardTitle className="text-xl md:text-2xl text-accent">Provider Dashboard</CardTitle>
                 <CardDescription>List new products on the marketplace.</CardDescription>
             </CardHeader>
             <form onSubmit={handleProductListing}>

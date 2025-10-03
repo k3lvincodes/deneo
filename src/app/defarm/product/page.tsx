@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -30,8 +31,8 @@ export default function ProductDetailPage() {
   };
 
   return (
-    <div className="container mx-auto py-12">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+    <div className="container mx-auto py-8 px-4 md:py-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
         <div>
           <Card className="bg-card/50 border-border/50 shadow-lg overflow-hidden">
             <Image 
@@ -39,14 +40,14 @@ export default function ProductDetailPage() {
               alt={product.name} 
               width={800} 
               height={600} 
-              className="w-full object-cover"
+              className="w-full h-auto object-cover"
               data-ai-hint={product.dataAiHint}
             />
           </Card>
         </div>
         <div>
-          <h1 className="font-headline text-4xl font-bold">{product.name}</h1>
-          <div className="flex items-center gap-4 mt-4">
+          <h1 className="font-headline text-3xl md:text-4xl font-bold">{product.name}</h1>
+          <div className="flex items-center flex-wrap gap-4 mt-4">
             <Badge variant="default" className="bg-accent text-accent-foreground">
               <ShieldCheck className="mr-1.5 h-4 w-4" /> Verified
             </Badge>
@@ -57,34 +58,34 @@ export default function ProductDetailPage() {
               <span className="text-muted-foreground text-sm ml-1">({product.farmer.reviews} reviews)</span>
             </div>
           </div>
-          <p className="mt-6 text-lg text-muted-foreground">{product.description}</p>
+          <p className="mt-6 text-md md:text-lg text-muted-foreground">{product.description}</p>
           
-          <Separator className="my-8" />
+          <Separator className="my-6 md:my-8" />
 
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-4 md:gap-6">
             {product.details.map((detail, i) => (
                 <div key={i} className="flex items-center gap-3">
                     <detail.icon className="h-6 w-6 text-accent"/>
                     <div>
-                        <p className="text-sm text-muted-foreground">{detail.label}</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground">{detail.label}</p>
                         {detail.link ? (
-                             <a href="#" className="font-semibold text-accent hover:underline">{detail.value}</a>
+                             <a href="#" className="font-semibold text-accent hover:underline text-sm sm:text-base">{detail.value}</a>
                         ) : (
-                             <p className="font-semibold">{detail.value}</p>
+                             <p className="font-semibold text-sm sm:text-base">{detail.value}</p>
                         )}
                     </div>
                 </div>
             ))}
           </div>
 
-           <Separator className="my-8" />
+           <Separator className="my-6 md:my-8" />
           
             <Card className="bg-card/50 border-border/50 shadow-lg">
                 <CardHeader>
                     <CardTitle>Seller Information</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                         <div className="flex items-center gap-4">
                             <Avatar className="w-12 h-12">
                                 <AvatarFallback className="bg-secondary">{product.farmer.avatar}</AvatarFallback>
@@ -94,7 +95,7 @@ export default function ProductDetailPage() {
                                 <p className="text-sm text-muted-foreground">Reputation Score: {product.farmer.rating}/5.0</p>
                             </div>
                         </div>
-                         <Button variant="outline" className="glow-on-hover">View Profile</Button>
+                         <Button variant="outline" className="glow-on-hover w-full sm:w-auto">View Profile</Button>
                     </div>
                      <div className="mt-4">
                         <Label>Reliability</Label>
@@ -104,7 +105,7 @@ export default function ProductDetailPage() {
             </Card>
 
             <div className="mt-8">
-                 <p className="text-3xl font-bold text-accent mb-4">{product.price}</p>
+                 <p className="text-2xl md:text-3xl font-bold text-accent mb-4">{product.price}</p>
                  <Button size="lg" className="w-full glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">
                     <PlusCircle className="mr-2 h-5 w-5" /> Add to Cart
                 </Button>

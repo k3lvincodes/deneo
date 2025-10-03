@@ -75,10 +75,10 @@ export default function RolesPage() {
     };
 
     return (
-        <div className="container mx-auto py-12">
-            <div className="text-center mb-12">
-                <h1 className="font-headline text-4xl font-bold">Company Roles & Funding</h1>
-                <p className="mt-2 text-lg text-muted-foreground">Apply for key roles or contribute to the ecosystem.</p>
+        <div className="container mx-auto py-8 px-4 md:py-12">
+            <div className="text-center mb-8 md:mb-12">
+                <h1 className="font-headline text-3xl md:text-4xl font-bold">Company Roles & Funding</h1>
+                <p className="mt-2 text-md md:text-lg text-muted-foreground">Apply for key roles or contribute to the ecosystem.</p>
             </div>
 
             <Tabs defaultValue="apply" className="w-full">
@@ -152,7 +152,7 @@ export default function RolesPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
                          <Card className="bg-card/50 border-border/50 shadow-lg">
                             <CardHeader>
-                                <CardTitle className="flex items-center gap-2"><DollarSign /> Deposit Funds</CardTitle>
+                                <CardTitle className="flex items-center gap-2 text-lg"><DollarSign /> Deposit Funds</CardTitle>
                                 <CardDescription>Make a general deposit to the DeNeo ecosystem fund.</CardDescription>
                             </CardHeader>
                             <form onSubmit={handleDeposit}>
@@ -167,7 +167,7 @@ export default function RolesPage() {
                         </Card>
                         <Card className="bg-card/50 border-border/50 shadow-lg">
                             <CardHeader>
-                                <CardTitle>Request PFPC</CardTitle>
+                                <CardTitle className="text-lg">Request PFPC</CardTitle>
                                 <CardDescription>Send a request for a PFPC. A fee is required for this action.</CardDescription>
                             </CardHeader>
                             <form onSubmit={handleRequestPfpc}>

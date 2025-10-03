@@ -103,15 +103,15 @@ export function ProviderRegistration({ onRegister }: ProviderRegistrationProps) 
                         )}>
                             {uploadedImage ? (
                                 <div className="space-y-2 text-center">
-                                    <Image src={uploadedImage} alt="Uploaded face" width={200} height={150} className="rounded-md mx-auto" />
+                                    <Image src={uploadedImage} alt="Uploaded face" width={100} height={100} className="rounded-md mx-auto aspect-square object-cover" />
                                     <Button variant="outline" size="sm" onClick={() => setUploadedImage(null)}>
-                                        <Trash2 className="mr-2 h-4 w-4" /> Remove Photo
+                                        <Trash2 className="mr-2 h-4 w-4" /> Remove
                                     </Button>
                                 </div>
                             ) : (
                                 <>
                                     <Button type="button" variant="outline" onClick={() => fileInputRef.current?.click()} className="w-full h-full">
-                                        <Upload className="mr-2 h-4 w-4" /> Upload Photo
+                                        <Upload className="mr-2 h-4 w-4" /> Upload
                                     </Button>
                                     <Input type="file" ref={fileInputRef} className="hidden" accept="image/*" onChange={handleFileUpload} />
                                 </>

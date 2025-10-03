@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -14,9 +15,9 @@ const leaderboardData = [
 export function SustainabilityScoreboard() {
   return (
     <section>
-      <div className="text-center mb-12">
-        <h2 className="font-headline text-4xl font-bold text-foreground">Sustainability Scoreboard</h2>
-        <p className="mt-2 text-lg text-muted-foreground">Tracking our collective impact on the planet.</p>
+      <div className="text-center mb-8 md:mb-12">
+        <h2 className="font-headline text-3xl md:text-4xl font-bold text-foreground">Sustainability Scoreboard</h2>
+        <p className="mt-2 text-md md:text-lg text-muted-foreground">Tracking our collective impact on the planet.</p>
       </div>
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
         <Card className="bg-card/50 border-border/50 shadow-lg">
@@ -24,26 +25,26 @@ export function SustainabilityScoreboard() {
             <CardTitle>Global Metrics</CardTitle>
             <CardDescription>Ecosystem-wide sustainability achievements.</CardDescription>
           </CardHeader>
-          <CardContent className="grid grid-cols-2 gap-6 pt-2">
+          <CardContent className="grid grid-cols-2 gap-4 md:gap-6 pt-2">
             <div className="bg-secondary p-4 rounded-lg">
-              <Sprout className="h-8 w-8 text-accent mb-2" />
-              <p className="text-2xl font-bold">1,200 Ha</p>
-              <p className="text-sm text-muted-foreground">Reforestation</p>
+              <Sprout className="h-6 md:h-8 w-6 md:w-8 text-accent mb-2" />
+              <p className="text-xl md:text-2xl font-bold">1,200 Ha</p>
+              <p className="text-xs md:text-sm text-muted-foreground">Reforestation</p>
             </div>
             <div className="bg-secondary p-4 rounded-lg">
-              <Globe className="h-8 w-8 text-accent mb-2" />
-              <p className="text-2xl font-bold">5,000 tCO₂e</p>
-              <p className="text-sm text-muted-foreground">Carbon Offset</p>
+              <Globe className="h-6 md:h-8 w-6 md:w-8 text-accent mb-2" />
+              <p className="text-xl md:text-2xl font-bold">5,000 tCO₂e</p>
+              <p className="text-xs md:text-sm text-muted-foreground">Carbon Offset</p>
             </div>
             <div className="bg-secondary p-4 rounded-lg">
-              <ShieldCheck className="h-8 w-8 text-accent mb-2" />
-              <p className="text-2xl font-bold">14,302</p>
-              <p className="text-sm text-muted-foreground">Animals Insured</p>
+              <ShieldCheck className="h-6 md:h-8 w-6 md:w-8 text-accent mb-2" />
+              <p className="text-xl md:text-2xl font-bold">14,302</p>
+              <p className="text-xs md:text-sm text-muted-foreground">Animals Insured</p>
             </div>
             <div className="bg-secondary p-4 rounded-lg">
-              <User className="h-8 w-8 text-accent mb-2" />
-              <p className="text-2xl font-bold">1,500+</p>
-              <p className="text-sm text-muted-foreground">Contributors</p>
+              <User className="h-6 md:h-8 w-6 md:w-8 text-accent mb-2" />
+              <p className="text-xl md:text-2xl font-bold">1,500+</p>
+              <p className="text-xs md:text-sm text-muted-foreground">Contributors</p>
             </div>
           </CardContent>
         </Card>
@@ -52,13 +53,13 @@ export function SustainabilityScoreboard() {
             <CardTitle>Impact Leaderboard</CardTitle>
             <CardDescription>Top contributing regions and individuals.</CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
                   <TableHead className="w-[50px]">Rank</TableHead>
                   <TableHead>Contributor</TableHead>
-                  <TableHead className="text-right">Impact Score</TableHead>
+                  <TableHead className="text-right">Impact</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -71,12 +72,12 @@ export function SustainabilityScoreboard() {
                           <AvatarFallback className={item.type === 'Region' ? 'bg-primary' : 'bg-secondary'}>{item.name.charAt(0)}</AvatarFallback>
                         </Avatar>
                         <div>
-                          <p className="font-medium">{item.name}</p>
+                          <p className="font-medium whitespace-nowrap">{item.name}</p>
                           <Badge variant={item.type === 'Region' ? 'default' : 'secondary'} className={item.type === 'Region' ? 'bg-accent text-accent-foreground' : ''}>{item.type}</Badge>
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell className="text-right font-semibold text-accent">{item.score}</TableCell>
+                    <TableCell className="text-right font-semibold text-accent whitespace-nowrap">{item.score}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

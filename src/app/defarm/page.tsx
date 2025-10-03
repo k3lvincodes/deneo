@@ -83,10 +83,10 @@ export default function DeFarmPage() {
   };
 
   return (
-    <div className="container mx-auto py-12">
-      <div className="text-center mb-12">
-        <h1 className="font-headline text-4xl font-bold">DeFarm</h1>
-        <p className="mt-2 text-lg text-muted-foreground">The decentralized hub for regenerative agriculture.</p>
+    <div className="container mx-auto py-8 px-4 md:py-12">
+      <div className="text-center mb-8 md:mb-12">
+        <h1 className="font-headline text-3xl md:text-4xl font-bold">DeFarm</h1>
+        <p className="mt-2 text-md md:text-lg text-muted-foreground">The decentralized hub for regenerative agriculture.</p>
       </div>
       
       <Tabs defaultValue="marketplace">
@@ -100,7 +100,7 @@ export default function DeFarmPage() {
         <TabsContent value="marketplace">
             <div className="flex flex-col md:flex-row gap-8">
                 <aside className="w-full md:w-1/4 lg:w-1/5">
-                    <h2 className="text-xl font-semibold mb-4 text-accent">Categories</h2>
+                    <h2 className="text-lg md:text-xl font-semibold mb-4 text-accent">Categories</h2>
                     <div className="flex flex-col gap-2">
                         {categories.map((category, index) => (
                             <a key={index} href="#" className="flex items-center gap-3 p-2 rounded-md text-foreground/80 hover:bg-secondary hover:text-foreground transition-colors">
@@ -128,7 +128,7 @@ export default function DeFarmPage() {
                             <CardTitle>Track Orders</CardTitle>
                             <CardDescription>Monitor incoming orders for your products. Data from `Req_Ini` getter.</CardDescription>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="overflow-x-auto">
                              <Table>
                                 <TableHeader>
                                     <TableRow>
@@ -142,8 +142,8 @@ export default function DeFarmPage() {
                                 <TableBody>
                                     {orders.map(order => (
                                         <TableRow key={order.orderId}>
-                                            <TableCell className="font-mono">{order.orderId}</TableCell>
-                                            <TableCell className="font-mono">{order.customer}</TableCell>
+                                            <TableCell className="font-mono text-xs">{order.orderId}</TableCell>
+                                            <TableCell className="font-mono text-xs">{order.customer}</TableCell>
                                             <TableCell>{order.product}</TableCell>
                                             <TableCell className="text-accent font-semibold">{order.amount}</TableCell>
                                             <TableCell>
@@ -161,7 +161,7 @@ export default function DeFarmPage() {
                             <CardDescription>Secure on-chain insurance for your crops and livestock.</CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-4">
-                            <div className="flex items-center justify-between p-4 bg-secondary rounded-lg">
+                            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 bg-secondary rounded-lg">
                                 <div className="flex items-center gap-4">
                                     <ShieldCheck className="text-accent h-8 w-8"/>
                                     <div>
@@ -170,7 +170,7 @@ export default function DeFarmPage() {
                                     </div>
                                 </div>
                                 <form onSubmit={handleClaim}>
-                                    <Button type="submit" className="glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">
+                                    <Button type="submit" className="glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90 w-full sm:w-auto">
                                         <FileText className="mr-2 h-4 w-4" /> File a Claim
                                     </Button>
                                 </form>
@@ -192,16 +192,16 @@ export default function DeFarmPage() {
                            <div className="flex items-center justify-between p-3 bg-secondary rounded-lg">
                                 <div className="flex items-center gap-3">
                                     <DollarSign className="text-accent"/>
-                                    <span className="font-medium">Total Revenue (getter)</span>
+                                    <span className="font-medium text-sm">Total Revenue (getter)</span>
                                 </div>
-                                <span className="font-bold text-lg">1,234 ETH</span>
+                                <span className="font-bold text-md">1,234 ETH</span>
                            </div>
                            <div className="flex items-center justify-between p-3 bg-secondary rounded-lg">
                                 <div className="flex items-center gap-3">
                                     <Package className="text-accent"/>
-                                    <span className="font-medium">Orders Fulfilled (getter)</span>
+                                    <span className="font-medium text-sm">Orders Fulfilled (getter)</span>
                                 </div>
-                                <span className="font-bold text-lg">42</span>
+                                <span className="font-bold text-md">42</span>
                            </div>
                         </CardContent>
                     </Card>

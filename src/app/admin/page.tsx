@@ -83,15 +83,15 @@ export default function AdminPage() {
     }
 
     return (
-        <div className="container mx-auto py-12">
-            <div className="text-center mb-12">
-                <h1 className="font-headline text-4xl font-bold">Admin Panel</h1>
-                <p className="mt-2 text-lg text-muted-foreground">Manage ecosystem settings, roles, and orders. (Owner-only access)</p>
+        <div className="container mx-auto py-8 px-4 md:py-12">
+            <div className="text-center mb-8 md:mb-12">
+                <h1 className="font-headline text-3xl md:text-4xl font-bold">Admin Panel</h1>
+                <p className="mt-2 text-md md:text-lg text-muted-foreground">Manage ecosystem settings, roles, and orders. (Owner-only access)</p>
             </div>
 
             <Tabs defaultValue="general">
                  <div className="flex justify-center mb-8">
-                    <TabsList className="bg-card/50 border border-border">
+                    <TabsList className="bg-card/50 border border-border grid grid-cols-2 sm:grid-cols-4 h-auto">
                         <TabsTrigger value="general">General</TabsTrigger>
                         <TabsTrigger value="roles">Role Management</TabsTrigger>
                         <TabsTrigger value="payroll">Payroll</TabsTrigger>
@@ -100,15 +100,15 @@ export default function AdminPage() {
                 </div>
 
                 <TabsContent value="general">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
                         <div className="space-y-8">
                             <Card className="bg-card/50 border-border/50 shadow-lg">
                                 <CardHeader>
-                                    <CardTitle className="text-2xl text-accent">Home Pickup Orders</CardTitle>
+                                    <CardTitle className="text-xl md:text-2xl text-accent">Home Pickup Orders</CardTitle>
                                     <CardDescription>View and manage home delivery requests.</CardDescription>
                                 </CardHeader>
                                 <CardContent>
-                                    <div className="flex gap-4 mb-6">
+                                    <div className="flex flex-col sm:flex-row gap-4 mb-6">
                                         <Button onClick={handleNotify} className="flex-1" disabled={loading['notify']}>
                                             {loading['notify'] ? <Loader2 className="mr-2 animate-spin" /> : <Bell className="mr-2" />} Notify Admin to View
                                         </Button>
@@ -116,24 +116,26 @@ export default function AdminPage() {
                                             <Eye className="mr-2" /> View Orders
                                         </Button>
                                     </div>
-                                    <Table>
-                                        <TableHeader>
-                                            <TableRow>
-                                                <TableHead>Buyer</TableHead>
-                                                <TableHead>Product</TableHead>
-                                                <TableHead>Destination</TableHead>
-                                            </TableRow>
-                                        </TableHeader>
-                                        <TableBody>
-                                            {homePickOrders.map((order, index) => (
-                                                <TableRow key={index}>
-                                                    <TableCell className="font-mono">{order.buyer}</TableCell>
-                                                    <TableCell>{order.product}</TableCell>
-                                                    <TableCell>{order.destination}</TableCell>
+                                    <div className="overflow-x-auto">
+                                        <Table>
+                                            <TableHeader>
+                                                <TableRow>
+                                                    <TableHead>Buyer</TableHead>
+                                                    <TableHead>Product</TableHead>
+                                                    <TableHead>Destination</TableHead>
                                                 </TableRow>
-                                            ))}
-                                        </TableBody>
-                                    </Table>
+                                            </TableHeader>
+                                            <TableBody>
+                                                {homePickOrders.map((order, index) => (
+                                                    <TableRow key={index}>
+                                                        <TableCell className="font-mono text-xs">{order.buyer}</TableCell>
+                                                        <TableCell>{order.product}</TableCell>
+                                                        <TableCell>{order.destination}</TableCell>
+                                                    </TableRow>
+                                                ))}
+                                            </TableBody>
+                                        </Table>
+                                    </div>
                                 </CardContent>
                             </Card>
                         </div>
@@ -141,7 +143,7 @@ export default function AdminPage() {
                         <div>
                             <Card className="bg-card/50 border-border/50 shadow-lg">
                                 <CardHeader>
-                                    <CardTitle className="text-2xl text-accent">Set Pickup Locations</CardTitle>
+                                    <CardTitle className="text-xl md:text-2xl text-accent">Set Pickup Locations</CardTitle>
                                     <CardDescription>Add or update the pickup addresses for each state.</CardDescription>
                                 </CardHeader>
                                 <CardContent>
@@ -168,10 +170,10 @@ export default function AdminPage() {
                 </TabsContent>
                 
                 <TabsContent value="roles">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                          <Card className="bg-card/50 border-border/50 shadow-lg">
                             <CardHeader>
-                                <CardTitle className="flex items-center gap-2"><UserPlus /> Register SFPC</CardTitle>
+                                <CardTitle className="flex items-center gap-2 text-lg"><UserPlus /> Register SFPC</CardTitle>
                             </CardHeader>
                             <form onSubmit={handleRegisterRole('sfpc')}>
                                 <CardContent>
@@ -188,7 +190,7 @@ export default function AdminPage() {
                         </Card>
                          <Card className="bg-card/50 border-border/50 shadow-lg">
                             <CardHeader>
-                                <CardTitle className="flex items-center gap-2"><UserPlus /> Register FPC</CardTitle>
+                                <CardTitle className="flex items-center gap-2 text-lg"><UserPlus /> Register FPC</CardTitle>
                             </CardHeader>
                              <form onSubmit={handleRegisterRole('fpc')}>
                                 <CardContent>
@@ -205,7 +207,7 @@ export default function AdminPage() {
                         </Card>
                          <Card className="bg-card/50 border-border/50 shadow-lg">
                             <CardHeader>
-                                <CardTitle className="flex items-center gap-2"><UserPlus /> Register PFPC</CardTitle>
+                                <CardTitle className="flex items-center gap-2 text-lg"><UserPlus /> Register PFPC</CardTitle>
                                 <CardDescription>Fee applies for PFPC registration.</CardDescription>
                             </CardHeader>
                             <form onSubmit={handleRegisterRole('pfpc')}>
@@ -225,13 +227,13 @@ export default function AdminPage() {
                 </TabsContent>
 
                 <TabsContent value="payroll">
-                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <Card className="bg-card/50 border-border/50 shadow-lg text-center">
                             <CardHeader>
-                                <CardTitle className="flex items-center justify-center gap-2"><DollarSign /> Pay SFPC Wages</CardTitle>
+                                <CardTitle className="flex items-center justify-center gap-2 text-lg"><DollarSign /> Pay SFPC Wages</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-muted-foreground mb-4">Click to execute batch payment for all registered SFPC members.</p>
+                                <p className="text-muted-foreground mb-4 text-sm">Click to execute batch payment for all registered SFPC members.</p>
                                 <Button onClick={handlePayWages('sfpc')} className="w-full glow-on-hover" disabled={loading['pay-sfpc']}>
                                     {loading['pay-sfpc'] && <Loader2 className="mr-2 animate-spin" />}
                                     Pay All SFPCs
@@ -240,10 +242,10 @@ export default function AdminPage() {
                         </Card>
                         <Card className="bg-card/50 border-border/50 shadow-lg text-center">
                             <CardHeader>
-                                <CardTitle className="flex items-center justify-center gap-2"><DollarSign /> Pay FPC Wages</CardTitle>
+                                <CardTitle className="flex items-center justify-center gap-2 text-lg"><DollarSign /> Pay FPC Wages</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-muted-foreground mb-4">Click to execute batch payment for all registered FPC members.</p>
+                                <p className="text-muted-foreground mb-4 text-sm">Click to execute batch payment for all registered FPC members.</p>
                                 <Button onClick={handlePayWages('fpc')} className="w-full glow-on-hover" disabled={loading['pay-fpc']}>
                                     {loading['pay-fpc'] && <Loader2 className="mr-2 animate-spin" />}
                                     Pay All FPCs
@@ -252,10 +254,10 @@ export default function AdminPage() {
                         </Card>
                         <Card className="bg-card/50 border-border/50 shadow-lg text-center">
                             <CardHeader>
-                                <CardTitle className="flex items-center justify-center gap-2"><DollarSign /> Pay PFPC Wages</CardTitle>
+                                <CardTitle className="flex items-center justify-center gap-2 text-lg"><DollarSign /> Pay PFPC Wages</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-muted-foreground mb-4">Click to execute batch payment for all registered PFPC members.</p>
+                                <p className="text-muted-foreground mb-4 text-sm">Click to execute batch payment for all registered PFPC members.</p>
                                 <Button onClick={handlePayWages('pfpc')} className="w-full glow-on-hover" disabled={loading['pay-pfpc']}>
                                     {loading['pay-pfpc'] && <Loader2 className="mr-2 animate-spin" />}
                                     Pay All PFPCs
@@ -268,14 +270,14 @@ export default function AdminPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <Card className="bg-card/50 border-border/50 shadow-lg">
                             <CardHeader>
-                                <CardTitle>Inspection Request Queue</CardTitle>
+                                <CardTitle className="text-lg">Inspection Request Queue</CardTitle>
                                 <CardDescription>Confirm pending inspection requests.</CardDescription>
                             </CardHeader>
-                            <CardContent>
+                            <CardContent className="overflow-x-auto">
                                 <Table>
                                     <TableHeader>
                                         <TableRow>
-                                            <TableHead>Request ID</TableHead>
+                                            <TableHead>ID</TableHead>
                                             <TableHead>Type</TableHead>
                                             <TableHead>Location</TableHead>
                                             <TableHead>Action</TableHead>
@@ -284,7 +286,7 @@ export default function AdminPage() {
                                     <TableBody>
                                         {inspectionRequests.map(req => (
                                             <TableRow key={req.id}>
-                                                <TableCell className="font-mono">{req.id}</TableCell>
+                                                <TableCell className="font-mono text-xs">{req.id}</TableCell>
                                                 <TableCell>{req.type}</TableCell>
                                                 <TableCell>{req.location}</TableCell>
                                                 <TableCell>
@@ -304,10 +306,10 @@ export default function AdminPage() {
                         </Card>
                          <Card className="bg-card/50 border-border/50 shadow-lg">
                             <CardHeader>
-                                <CardTitle>Reset Monthly Insurance</CardTitle>
+                                <CardTitle className="text-lg">Reset Monthly Insurance</CardTitle>
                                 <CardDescription>Reset insurance status for users.</CardDescription>
                             </CardHeader>
-                            <CardContent>
+                            <CardContent className="overflow-x-auto">
                                 <Table>
                                     <TableHeader>
                                         <TableRow>
@@ -320,7 +322,7 @@ export default function AdminPage() {
                                     <TableBody>
                                         {insuredUsers.map(user => (
                                             <TableRow key={user.id}>
-                                                <TableCell className="font-mono">{user.id}</TableCell>
+                                                <TableCell className="font-mono text-xs">{user.id}</TableCell>
                                                 <TableCell>{user.policy}</TableCell>
                                                 <TableCell>
                                                     <Badge variant={user.status === 'Active' ? 'default' : 'destructive'} className={user.status === 'Active' ? 'bg-accent text-accent-foreground' : ''}>

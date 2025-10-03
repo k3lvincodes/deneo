@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 
@@ -12,7 +13,7 @@ export function DAOProposals() {
         <div className="space-y-6">
             {proposals.map((p, i) => (
                 <div key={i} className="p-4 bg-secondary rounded-lg">
-                    <p className="font-semibold mb-2">{p.title}</p>
+                    <p className="font-semibold mb-2 text-sm">{p.title}</p>
                     <div className="space-y-2">
                         <div>
                             <div className="flex justify-between text-xs mb-1">
@@ -29,7 +30,7 @@ export function DAOProposals() {
                             <Progress value={p.no} className="h-2" />
                         </div>
                     </div>
-                    <div className="flex gap-2 mt-4">
+                    <div className="flex flex-col sm:flex-row gap-2 mt-4">
                         <Button size="sm" className="flex-1 glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">Vote Yes</Button>
                         <Button size="sm" variant="outline" className="flex-1 glow-on-hover">Vote No</Button>
                     </div>

@@ -1,3 +1,4 @@
+
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { Stethoscope, Bird, Syringe, Ambulance } from "lucide-react";
@@ -23,20 +24,20 @@ export function ImpactFeed() {
     }
 
   return (
-    <ScrollArea className="h-[450px] w-full pr-4">
+    <ScrollArea className="h-[400px] sm:h-[450px] w-full pr-4">
       <div className="space-y-6">
         {feedItems.map((item, index) => (
           <div key={index} className="flex items-start gap-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary shrink-0">
               <item.icon className="h-5 w-5 text-accent" />
             </div>
             <div className="flex-1">
-                <div className="flex justify-between items-start">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
                     <div>
-                        <p className="font-semibold">{item.description}</p>
-                        <p className="text-xs text-muted-foreground">{item.time} - <span className="font-mono">{item.hash}</span></p>
+                        <p className="font-semibold text-sm">{item.description}</p>
+                        <p className="text-xs text-muted-foreground">{item.time} - <span className="font-mono break-all">{item.hash}</span></p>
                     </div>
-                     <Badge variant={getBadgeVariant(item.type)} className={item.type === 'Insurance' ? 'bg-accent text-accent-foreground' : ''}>{item.type}</Badge>
+                     <Badge variant={getBadgeVariant(item.type)} className={`${item.type === 'Insurance' ? 'bg-accent text-accent-foreground' : ''} self-start`}>{item.type}</Badge>
                 </div>
             </div>
           </div>

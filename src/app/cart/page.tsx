@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
@@ -32,18 +33,18 @@ export default function CartPage() {
   const total = subtotal + shipping + tax;
 
   return (
-    <div className="container mx-auto py-12">
-      <div className="text-center mb-12">
-        <h1 className="font-headline text-4xl font-bold">Shopping Cart</h1>
-        <p className="mt-2 text-lg text-muted-foreground">Review your items and choose your impact before checkout.</p>
+    <div className="container mx-auto py-8 px-4 md:py-12">
+      <div className="text-center mb-8 md:mb-12">
+        <h1 className="font-headline text-3xl md:text-4xl font-bold">Shopping Cart</h1>
+        <p className="mt-2 text-md md:text-lg text-muted-foreground">Review your items and choose your impact before checkout.</p>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 items-start">
         <div className="lg:col-span-2">
           <Card className="bg-card/50 border-border/50 shadow-lg">
             <CardHeader>
               <CardTitle>Your Items</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="overflow-x-auto">
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -58,21 +59,21 @@ export default function CartPage() {
                     <TableRow key={index}>
                       <TableCell>
                         <div className="flex items-center gap-4">
-                          <Image src={item.image} alt={item.name} width={64} height={64} className="rounded-md object-cover" data-ai-hint={item.dataAiHint} />
+                          <Image src={item.image} alt={item.name} width={64} height={64} className="rounded-md object-cover hidden sm:block" data-ai-hint={item.dataAiHint} />
                           <div>
-                            <p className="font-medium">{item.name}</p>
+                            <p className="font-medium whitespace-nowrap">{item.name}</p>
                             <p className="text-sm text-muted-foreground">{item.price.toFixed(2)} ETH</p>
                           </div>
                         </div>
                       </TableCell>
                       <TableCell>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1 sm:gap-2">
                             <Button variant="ghost" size="icon" className="h-7 w-7"><MinusCircle className="h-4 w-4" /></Button>
-                            <Input type="number" value={item.quantity} className="w-16 h-8 text-center bg-background" readOnly />
+                            <Input type="number" value={item.quantity} className="w-12 sm:w-16 h-8 text-center bg-background" readOnly />
                             <Button variant="ghost" size="icon" className="h-7 w-7"><PlusCircle className="h-4 w-4" /></Button>
                         </div>
                       </TableCell>
-                      <TableCell className="text-right font-medium">{(item.price * item.quantity).toFixed(2)} ETH</TableCell>
+                      <TableCell className="text-right font-medium whitespace-nowrap">{(item.price * item.quantity).toFixed(2)} ETH</TableCell>
                       <TableCell>
                         <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-destructive">
                             <Trash2 className="h-4 w-4" />
@@ -123,21 +124,21 @@ export default function CartPage() {
             <CardContent className="space-y-4">
                 <div className="flex items-center space-x-3 p-3 bg-secondary rounded-lg">
                     <Checkbox id="impact-tree" />
-                    <Label htmlFor="impact-tree" className="flex items-center gap-3 cursor-pointer">
+                    <Label htmlFor="impact-tree" className="flex items-center gap-3 cursor-pointer text-sm">
                         <Leaf className="text-accent"/>
                         <span>Plant +1 Tree (0.1 ETH)</span>
                     </Label>
                 </div>
                 <div className="flex items-center space-x-3 p-3 bg-secondary rounded-lg">
                     <Checkbox id="impact-donate" />
-                    <Label htmlFor="impact-donate" className="flex items-center gap-3 cursor-pointer">
+                    <Label htmlFor="impact-donate" className="flex items-center gap-3 cursor-pointer text-sm">
                         <HeartHandshake className="text-accent"/>
                         <span>Donate 5% to Animal Rescue</span>
                     </Label>
                 </div>
                  <div className="flex items-center space-x-3 p-3 bg-secondary rounded-lg">
                     <Checkbox id="impact-lock" />
-                    <Label htmlFor="impact-lock" className="flex items-center gap-3 cursor-pointer">
+                    <Label htmlFor="impact-lock" className="flex items-center gap-3 cursor-pointer text-sm">
                         <Lock className="text-accent"/>
                         <span>Lock tokens for Circular Income</span>
                     </Label>

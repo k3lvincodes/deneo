@@ -1,3 +1,4 @@
+
 import { HeroSection } from "@/components/home/hero-section";
 import { Dashboard } from "@/components/home/dashboard";
 import { TokenEconomyPanel } from "@/components/home/token-economy-panel";
@@ -10,7 +11,7 @@ export default function Home() {
     <div className="flex flex-col">
       <HeroSection />
       <Dashboard />
-      <div className="container mx-auto py-16 sm:py-24 space-y-24">
+      <div className="container mx-auto px-4 py-16 sm:py-24 space-y-16 sm:space-y-24">
         <TokenEconomyPanel />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
             <div className="lg:col-span-2">
