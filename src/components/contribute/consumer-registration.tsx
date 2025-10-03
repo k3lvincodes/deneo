@@ -14,7 +14,7 @@ interface ConsumerRegistrationProps {
 
 export function ConsumerRegistration({ onRegister }: ConsumerRegistrationProps) {
     const { toast } = useToast();
-    const { handleConnect, isConnected } = useWallet();
+    const { handleConnect, isConnected, handleRegister } = useWallet();
     
     const handleConsumerSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -29,6 +29,7 @@ export function ConsumerRegistration({ onRegister }: ConsumerRegistrationProps) 
             handleConnect();
         }
         
+        handleRegister();
         onRegister();
     };
 

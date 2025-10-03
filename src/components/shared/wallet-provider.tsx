@@ -7,8 +7,10 @@ import { createContext, useContext, useState, ReactNode } from "react";
 interface WalletContextType {
     isConnected: boolean;
     userAddress: string;
+    isRegistered: boolean;
     handleConnect: () => void;
     handleDisconnect: () => void;
+    handleRegister: () => void;
 }
 
 const WalletContext = createContext<WalletContextType | undefined>(undefined);
@@ -29,6 +31,7 @@ export function WalletProvider({ children }: WalletProviderProps) {
     const { toast } = useToast();
     const [isConnected, setIsConnected] = useState(false);
     const [userAddress, setUserAddress] = useState("");
+    const [isRegistered, setIsRegistered] = useState(false);
 
     const handleConnect = () => {
         toast({
@@ -55,11 +58,17 @@ export function WalletProvider({ children }: WalletProviderProps) {
         });
     };
 
+    const handleRegister = () => {
+        setIsRegistered(true);
+    };
+
     const value = {
         isConnected,
         userAddress,
+        isRegistered,
         handleConnect,
         handleDisconnect,
+        handleRegister,
     };
 
     return (

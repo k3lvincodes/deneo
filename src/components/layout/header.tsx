@@ -13,6 +13,7 @@ import {
   SheetTrigger,
   SheetTitle,
   SheetHeader,
+  SheetClose,
 } from "@/components/ui/sheet";
 import {
   DropdownMenu,
@@ -24,6 +25,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useWallet } from "../shared/wallet-provider";
+import { useState } from "react";
 
 
 const navLinks = [
@@ -35,7 +37,8 @@ const navLinks = [
 
 export function Header() {
   const pathname = usePathname();
-  const { isConnected, userAddress, handleConnect, handleDisconnect } = useWallet();
+  const { isConnected, userAddress, handleConnect, handleDisconnect, isRegistered } = useWallet();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -102,9 +105,13 @@ export function Header() {
                     </DropdownMenuContent>
                 </DropdownMenu>
             )}
+           
+          <Button asChild size="lg" variant="secondary" className="glow-on-hover hidden lg:flex">
+            <Link href="/contribute">{isRegistered ? "Contributor Portal" : "Join as Contributor"}</Link>
+          </Button>
 
           <div className="lg:hidden">
-            <Sheet>
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="glow-on-hover">
                   <Menu className="h-5 w-5" />
@@ -123,6 +130,7 @@ export function Header() {
                     <Link
                       key={link.href}
                       href={link.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
                       className={cn(
                         "text-lg font-medium transition-colors hover:text-accent",
                         pathname === link.href
@@ -136,6 +144,7 @@ export function Header() {
                    {isConnected && (
                      <Link
                       href="/admin"
+                      onClick={() => setIsMobileMenuOpen(false)}
                       className={cn(
                         "text-lg font-medium transition-colors hover:text-accent",
                         pathname === "/admin"
@@ -147,7 +156,7 @@ export function Header() {
                     </Link>
                    )}
                   {!isConnected ? (
-                        <Button onClick={handleConnect} className="w-full glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">
+                        <Button onClick={() => {handleConnect(); setIsMobileMenuOpen(false);}} className="w-full glow-on-hover bg-accent text-accent-foreground hover:bg-accent/90">
                            <Wallet className="mr-2" /> Connect Wallet
                         </Button>
                     ) : (
@@ -155,14 +164,16 @@ export function Header() {
                             {`${userAddress.substring(0, 6)}...${userAddress.substring(userAddress.length - 4)}`}
                         </Button>
                     )}
-                  <Button
-                    asChild
-                    size="lg" 
-                    variant="secondary"
-                    className="w-full glow-on-hover"
-                  >
-                    <Link href="/contribute">Join as Contributor</Link>
-                  </Button>
+                   <SheetClose asChild>
+                    <Button
+                        asChild
+                        size="lg" 
+                        variant="secondary"
+                        className="w-full glow-on-hover"
+                      >
+                        <Link href="/contribute">{isRegistered ? "Contributor Portal" : "Join as Contributor"}</Link>
+                      </Button>
+                  </SheetClose>
                 </div>
               </SheetContent>
             </Sheet>

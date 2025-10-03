@@ -19,7 +19,7 @@ interface ProviderRegistrationProps {
 
 export function ProviderRegistration({ onRegister }: ProviderRegistrationProps) {
     const { toast } = useToast();
-    const { handleConnect, isConnected } = useWallet();
+    const { handleConnect, isConnected, handleRegister } = useWallet();
     const [uploadedImage, setUploadedImage] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -56,6 +56,7 @@ export function ProviderRegistration({ onRegister }: ProviderRegistrationProps) 
             if (!isConnected) {
                 handleConnect();
             }
+            handleRegister();
             onRegister();
         }, 3000); // Simulate delay for wallet confirmation
     };
